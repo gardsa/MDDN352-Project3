@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Foresee</title>
+    <meta property="og:title" content="Foresee">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://foresee-app.surge.sh/">
+    <meta property="og:image" content="https://foresee.surge.sh/assets/touch-icon-256x256.png">
+    <meta property="og:description" name="description" content="Your Weather, Your Way">
+
+    <link rel="manifest" href="/webmanifest.json">
+
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/touch-icon-192x192.png">
+    <link rel="icon" sizes="192x192" href="assets/touch-icon-192x192.png">
+    <link rel="icon" sizes="256x256" href="assets/touch-icon-256x256.png">
+
+    <link rel="stylesheet" type="text/css" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto" rel="stylesheet">
+
+    <script src="scripts/weather.js"></script>
+    <script src="scripts/modular.js"></script>
+    <script src="scripts/packery.pkgd.min.js"></script>
+    <script src="scripts/draggabilly.pkgd.min.js"></script>
+  </head>
+  <body>
+    <nav class="slideout-menu">
+      <div class="header-logo">
+        <img src="assets/header-icon.svg">
+      </div>
+      <ul class="menu-options">
+        <li id="user-location-link" class="menu-elem menu-elem-highlight">
+          <img src="assets/user-location-icon.svg">
+          <p>Your Location</p>
+        </li>
+        <li class="menu-elem add-location">
+          <img src="assets/add-location-icon.svg">
+          <p>Add Location</p>
+        </li>
+        <li id="settings-link" class="menu-elem settings">
+          <img src="assets/settings-menu-icon.svg">
+          <p>Settings</p>
+        </li>
+        <li class="menu-elem attribution">
+          <p>Powered by:</p>
+          <p class="attr"><a href="https://darksky.net/poweredby/">Dark Sky</a> and <a href="https://openweathermap.org/">OpenWeatherMap</a></p>
+        </li>
+      </ul>
+    </nav>
+    <main id="panel" class="slideout-panel">
+      <header>
+        <section class="header-container">
+          <nav class="header-nav">
+            <ul class="list-nav">
+              <li class="list-nav-elem list-nav-elem-left"><img id="menu-icon" src="assets/menu-icon.svg"></li>
+              <li class="list-nav-elem list-nav-elem-right"><img id="settings-icon" src="assets/settings-icon.svg"></li>
+            </ul>
+          </nav>
+          <div class="header-logo">
+            <a href="#"><img id="headerIcon" src="assets/header-icon.svg"></a>
+          </div>
+        </section>
+      </header>
+      <nav class="dropdown-settings">
+        <ul class="menu-options">
+          <li class="menu-elem edit-homescreen">Edit homescreen
+          </li>
+          <li class="menu-elem select-heading">Select 4 components:
+          </li>
+          <li class="menu-elem">
+            <img src="assets/selected-icon.svg">
+            <p>Temperature</p>
+          </li>
+          <li class="menu-elem">
+            <img src="assets/selected-icon.svg">
+            <p>Rainfall</p>
+          </li>
+          <li class="menu-elem">
+            <img src="assets/selected-icon.svg">
+            <p>Wind</p>
+          </li>
+          <li class="menu-elem">
+            <img src="assets/selected-icon.svg">
+            <p>Cloud Cover</p>
+          </li>
+          <li class="menu-elem">
+            <img src="assets/unselected-icon.svg">
+            <p>Humidity</p>
+          </li>
+          <li class="menu-elem">
+            <img src="assets/unselected-icon.svg">
+            <p>Pressure</p>
+          </li>
+        </ul>
+      </nav>
+      <div class="content">
+        <div class="location-info">
+          <h2 id="location"></h2>
+          <p id="description"></p>
+        </div>
+        <div class="module-container">
+          <div class="grid">
+            <div class="grid-sizer"></div>
+            <div class="gutter-sizer"></div>
+            <div id="gridMain" class="grid-item grid-item-width3"></div>
+            <div id="grid1" class="grid-item"></div>
+            <div id="grid2" class="grid-item"></div>
+            <div id="grid3" class="grid-item"></div>
+          </div>
+        </div>
+      </div>
+      <div id="settings-nav">
+        <ul class="menu-options">
+          <li class="menu-elem menu-elem-highlight">
+            <h3>Settings</h2>
+          </li>
+          <li class="menu-elem">
+            <img src="assets/notifications-icon.svg">
+            <p>Notifications</p>
+          </li>
+          <li class="menu-elem">
+            <img src="assets/units-icon.svg">
+            <p>Unit Preferences</p>
+          </li>
+          <li class="menu-elem">
+            <img src="assets/theme-icon.svg">
+            <p>Theme</p>
+          </li>
+          <li class="menu-elem">
+            <img src="assets/updates-icon.svg">
+            <p>Updates</p>
+          </li>
+        </ul>
+      </div>
+      <div id="settings-homescreen">
+
+      </div>
+      <div id="menu-mask"></div>
+      <div id="settings-mask"></div>
+    </main>
+    <div id="location-error-mask">
+      <div class="mask-content">
+        <p>Location not found. Please check you have GPS services turned on, and allow Foresee to access your location. You may need to refresh the page.</p>
+        <btn id="close-location-error-mask">Close</btn>
+      </div>
+    </div>
+    <script src="scripts/events.js"></script>
+  </body>
+</html>
