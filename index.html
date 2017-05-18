@@ -4,27 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Foresee</title>
+
+    <!-- OpenGraph -->
     <meta property="og:title" content="Foresee">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://foresee-app.surge.sh/">
     <meta property="og:image" content="https://foresee.surge.sh/assets/touch-icon-256x256.png">
     <meta property="og:description" name="description" content="Your Weather, Your Way">
 
+    <!-- Web App Manifest -->
     <link rel="manifest" href="/webmanifest.json">
 
+    <!-- Icons -->
     <link rel="icon" href="assets/favicon.png">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/touch-icon-192x192.png">
     <link rel="icon" sizes="192x192" href="assets/touch-icon-192x192.png">
     <link rel="icon" sizes="256x256" href="assets/touch-icon-256x256.png">
 
+    <!-- CSS Reset, custom styles, and Google Fonts -->
     <link rel="stylesheet" type="text/css" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto" rel="stylesheet">
 
+    <!-- Firebase Setup -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCExaGjNOS1oqxA0XxCbFOPrWFz3hZpjwI",
+        authDomain: "foresee-26ee4.firebaseapp.com",
+        databaseURL: "https://foresee-26ee4.firebaseio.com",
+        projectId: "foresee-26ee4",
+        storageBucket: "foresee-26ee4.appspot.com",
+        messagingSenderId: "627989867921"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <!-- Custom scripts -->
     <script src="scripts/weather.js"></script>
     <script src="scripts/modular.js"></script>
+
+    <!-- Modular grid minified scripts -->
     <script src="scripts/packery.pkgd.min.js"></script>
     <script src="scripts/draggabilly.pkgd.min.js"></script>
+
+    <!-- FirebaseUI for User Authentication -->
+    
+    <!-- <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
+    <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: '/',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url. TODO: should make a page/popup for this
+        tosUrl: '/'
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+    </script> -->
   </head>
   <body>
     <nav class="slideout-menu">
