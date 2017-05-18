@@ -55,10 +55,12 @@
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       user = firebaseUser;
+      d.body.classList.add('logged-in');
+      console.log(user);
       // check to see writing data works
-      writeUserData(user);
-      console.log(firebaseUser);
+      // writeUserData(user);
     } else {
+      d.body.classList.remove('logged-in');
       console.log('not logged in');
     }
   });

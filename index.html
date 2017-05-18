@@ -28,19 +28,7 @@
 
     <!-- Firebase Setup -->
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCExaGjNOS1oqxA0XxCbFOPrWFz3hZpjwI",
-        authDomain: "foresee-26ee4.firebaseapp.com",
-        databaseURL: "https://foresee-26ee4.firebaseio.com",
-        projectId: "foresee-26ee4",
-        storageBucket: "foresee-26ee4.appspot.com",
-        messagingSenderId: "627989867921"
-      };
-      firebase.initializeApp(config);
-    </script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script> -->
 
     <!-- Custom scripts -->
     <script src="scripts/weather.js"></script>
@@ -49,32 +37,19 @@
     <!-- Modular grid minified scripts -->
     <script src="scripts/packery.pkgd.min.js"></script>
     <script src="scripts/draggabilly.pkgd.min.js"></script>
-
-    <!-- FirebaseUI for User Authentication -->
-    
-    <!-- <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
-    <script type="text/javascript">
-      // FirebaseUI config.
-      var uiConfig = {
-        signInSuccessUrl: '/',
-        signInOptions: [
-          // Leave the lines as is for the providers you want to offer your users.
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID
-        ],
-        // Terms of service url. TODO: should make a page/popup for this
-        tosUrl: '/'
-      };
-
-      // Initialize the FirebaseUI Widget using Firebase.
-      var ui = new firebaseui.auth.AuthUI(firebase.auth());
-      // The start method will wait until the DOM is loaded.
-      ui.start('#firebaseui-auth-container', uiConfig);
-    </script> -->
   </head>
   <body>
+    <div class="login-container">
+      <div class="login-content">
+        <input id="txtEmail" type="email" placeholder="Email">
+
+        <input id="txtPassword" type="password" placeholder="Password">
+
+        <button id="btnLogin" class="btn">Log in</button>
+
+        <button id="btnSignup" class="btn">Sign Up</button>
+      </div>
+    </div>
     <nav class="slideout-menu">
       <div class="header-logo">
         <img src="assets/header-icon.svg">
@@ -181,6 +156,9 @@
             <img src="assets/updates-icon.svg">
             <p>Updates</p>
           </li>
+          <li class="menu-elem">
+            <button id="btnLogout" class="btn">Log out</button>
+          </li>
         </ul>
       </div>
       <div id="settings-homescreen">
@@ -195,6 +173,7 @@
         <btn id="close-location-error-mask">Close</btn>
       </div>
     </div>
+    <script src="scripts/app.js"></script>
     <script src="scripts/events.js"></script>
   </body>
 </html>

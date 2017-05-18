@@ -16,6 +16,46 @@ a {
   color: #3ACCB0;
 }
 
+/* LOGIN SCREEN */
+
+.login-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  text-align: center;
+  z-index: 9999;
+}
+
+.logged-in .login-container {
+  display: none;
+}
+
+.login-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-content input, button {
+  display: block;
+  width: 100%;
+  margin: .5em auto;
+  text-align: center;
+}
+
+.login-content input {
+  border-color: black;
+}
+
+.login-content button {
+  background-color: black;
+  border-color: black;
+  color: white;
+}
 /* MENU */
 
 .slideout-menu .header-logo{
