@@ -80,21 +80,6 @@
     // });
   }
 
-  function addSavedLocation() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', openCageDataGeocodeURL + 'auckland' + '&key=' + openCageDataAPIKey);
-    xhr.addEventListener('load', function(event) {
-      locationParams = JSON.parse(event.target.response);
-      if (locationParams.results[0]) {
-        getWeatherData(locationParams.results[0].geometry.lat, locationParams.results[0].geometry.lng);
-      }
-      else {
-        // TODO: error state
-      }
-    });
-    xhr.send();
-  }
-
 
 
   // WEATHER FUNCTIONALITY
@@ -121,6 +106,23 @@
 
   function locationError(event) {
     d.body.classList.add('location-error');
+  }
+
+  function addSavedLocation() {
+    var locationSearchElem = d.getElementById('location-search').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', openCageDataGeocodeURL + locationSearchElem + '&key=' + openCageDataAPIKey);
+    xhr.addEventListener('load', function(event) {
+      locationParams = JSON.parse(event.target.response);
+      if (locationParams.results[0]) {
+        getWeatherData(locationParams.results[0].geometry.lat, locationParams.results[0].geometry.lng);
+      }
+      else {
+        // TODO: error state
+      }
+    });
+    xhr.send();
   }
 
   function getWeatherData(lat, lng) {
@@ -248,5 +250,6 @@
   d.addEventListener('DOMContentLoaded', function(){
     d.getElementById('user-location-link').addEventListener('click', getUserLocation);
     getUserLocation();
+    d.getElementById('location-search-btn').addEventListener('click', addSavedLocation);
   });
 })(document);
