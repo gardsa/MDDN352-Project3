@@ -32,7 +32,7 @@
     // Sign in
     var promise = auth.signInWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
-    promise.then(writeUserData);
+    promise.then(setupUser);
   }
 
   function signupHandler() {
@@ -71,13 +71,41 @@
     }
   });
 
-  function writeUserData() {
-    addSavedLocation();
-    // firebase.database().ref('users/' + user.uid).set({
-    //   'locations/',
-    //   'components/',
-    //   'notifications/'
-    // });
+  function setupUser() {
+    renderLocations();
+  }
+
+  function saveLocation(locationName, lat, lng) {
+    var locationsRef = firebase.database().ref('users/' + user.uid).child('locations');
+
+    locationsRef.push({
+      name: locationName,
+      lat: lat,
+      lng: lng
+    });
+  }
+
+  function renderLocations() {
+    var locationsRef = firebase.database().ref('users/' + user.uid).child('locations');
+
+    if (locationsRef) {
+      firebase.database().ref('/users/' + user.uid + '/locations/').once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var node = d.createElement('li'),
+          parentNode = d.getElementById('menu-options'),
+          refNode = d.getElementById('settings-link');
+
+          node.classList.add('menu-elem');
+          node.innerHTML = '<p>' + childSnapshot.val().name + '</p>';
+          parentNode.insertBefore(node, refNode);
+        });
+      });
+    }
+    else {
+      // TODO: locations not existing state
+      console.log('No locations found');
+    }
+
   }
 
 
@@ -108,7 +136,7 @@
     d.body.classList.add('location-error');
   }
 
-  function addSavedLocation() {
+  function addLocation() {
     var locationSearchElem = d.getElementById('location-search').value;
 
     var xhr = new XMLHttpRequest();
@@ -116,7 +144,11 @@
     xhr.addEventListener('load', function(event) {
       locationParams = JSON.parse(event.target.response);
       if (locationParams.results[0]) {
-        getWeatherData(locationParams.results[0].geometry.lat, locationParams.results[0].geometry.lng);
+        var lat = locationParams.results[0].geometry.lat,
+            lng = locationParams.results[0].geometry.lng;
+        getWeatherData(lat, lng);
+        saveLocation(locationSearchElem, lat, lng);
+        renderLocations();
       }
       else {
         // TODO: error state
@@ -250,6 +282,6 @@
   d.addEventListener('DOMContentLoaded', function(){
     d.getElementById('user-location-link').addEventListener('click', getUserLocation);
     getUserLocation();
-    d.getElementById('location-search-btn').addEventListener('click', addSavedLocation);
+    d.getElementById('location-search-btn').addEventListener('click', addLocation);
   });
 })(document);
