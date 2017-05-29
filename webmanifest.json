@@ -1,6 +1,6 @@
 {
-  "name": "Foresee",
-  "short_name": "4C",
+  "name": "WeatherFlex",
+  "short_name": "WeatherFlex",
   "start_url": ".",
   "display": "fullscreen",
   "background_color": "#FFFFFF",

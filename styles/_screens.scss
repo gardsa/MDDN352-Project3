@@ -1,0 +1,47 @@
+
+.screen-settings {
+  .theme-container, .home-container, .locations-container, .editor-container {
+    display: none;
+  }
+}
+
+.screen-theme {
+  .settings-container, .home-container, .locations-container, .editor-container {
+    display: none;
+  }
+}
+
+.screen-home {
+  .settings-container, .theme-container, .locations-container, .editor-container {
+    display: none;
+  }
+}
+
+.screen-locations {
+  .settings-container, .theme-container, .home-container, .editor-container {
+    display: none;
+  }
+}
+
+.screen-editor {
+  .settings-container, .theme-container, .home-container, .locations-container {
+    display: none;
+  }
+}
+
+.screen {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 3em;
+  left: 0;
+
+  .screen-heading {
+    margin: 1.5em 0;
+    font-size: 1.125em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}

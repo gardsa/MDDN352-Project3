@@ -10,7 +10,7 @@ $default-secondary-color: #9A9A9A;
 // Themes
 @mixin theme($theme-color-primary, $theme-color-secondary) {
   .screen-heading {color: $theme-color-primary;}
-  .location-info {color: $theme-color-secondary;}
-  .grid-item {background-color: $theme-color-secondary;}
-  .grid-item-width3 {background-color: $theme-color-primary;}
+  .location-info {color: $theme-color-primary;}
+  .grid-item {background-color: $theme-color-primary;}
+  .grid-item-width3 {background-color: $theme-color-secondary;}
 }

@@ -1,3 +1,41 @@
 .theme-container {
-
+  .list-module {
+    li {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      width: 100%;
+      padding:0;
+      background-color: #FFFFFF;
+    }
+    .theme-name, .theme-color-one, .theme-color-two {
+      height: inherit;
+      border-radius: 0.5em;
+    }
+    .theme-name {
+      background-color: $default-secondary-color;
+      flex-basis: 40%;
+      padding: 0.875em;
+    }
+    .theme-color-one, .theme-color-two {
+      flex-basis: 20%;
+      padding: 0.875em 0;
+    }
+    .theme-default {
+      .theme-color-one {background-color: #03D2AB;}
+      .theme-color-two {background-color: #F81268;}
+    }
+    .theme-light {
+      .theme-color-one {background-color: #4CB2D4;}
+      .theme-color-two {background-color: #88C542;}
+    }
+    .theme-dark {
+      .theme-color-one {background-color: #121258;}
+      .theme-color-two {background-color: #77A9D7;}
+    }
+    .theme-mono {
+      .theme-color-one {background-color: #363636;}
+      .theme-color-two {background-color: #7D7D7D;}
+    }
+  }
 }

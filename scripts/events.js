@@ -26,6 +26,19 @@
   d.getElementById('editor').addEventListener('click', function() {
     toggleScreenClass('screen-editor');
   });
+
+  d.getElementById('linkLogin').addEventListener('click', function(){
+    d.getElementById('loginScreen').classList.add('login-function');
+  });
+
+  d.getElementById('linkSignup').addEventListener('click', function(){
+    d.getElementById('loginScreen').classList.add('signup-function');
+  });
+
+  d.getElementById('loginBackBtn').addEventListener('click', function(){
+    d.getElementById('loginScreen').classList.remove('signup-function');
+    d.getElementById('loginScreen').classList.remove('login-function');
+  });
   // function toggleMenuClass() {
   //   d.body.classList.toggle('slideout-open');
   //   if (d.body.classList.contains('dropdown-open')) {

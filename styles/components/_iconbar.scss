@@ -10,21 +10,72 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     height: inherit;
     li {
       width: 20%;
       text-align: center;
+      padding-top: 6px;
+      .selected {
+        display: none;
+      }
+      .non-selected {
+        display: inline;
+      }
       p {
         padding-top: 5px;
         font-family: $heading-font;
         font-size: 7px;
         font-weight: bold;
-        letter-spacing: 0.05625em;
         text-transform: uppercase;
         color: $default-secondary-color;
       }
     }
+  }
+}
+
+.screen-settings {
+  #settings {
+    background-color: $default-secondary-color;
+    .selected {display: inline;}
+    .non-selected {display: none;}
+    p {color: $default-primary-color;}
+  }
+}
+
+.screen-theme {
+  #theme {
+    background-color: $default-secondary-color;
+    .selected {display: inline;}
+    .non-selected {display: none;}
+    p {color: $default-primary-color;}
+  }
+}
+
+.screen-home {
+  #home {
+    background-color: $default-secondary-color;
+    .selected {display: inline;}
+    .non-selected {display: none;}
+    p {color: $default-primary-color;}
+  }
+}
+
+.screen-locations {
+  #locations {
+    background-color: $default-secondary-color;
+    .selected {display: inline;}
+    .non-selected {display: none;}
+    p {color: $default-primary-color;}
+  }
+}
+
+.screen-editor {
+  #editor {
+    background-color: $default-secondary-color;
+    .selected {display: inline;}
+    .non-selected {display: none;}
+    p {color: $default-primary-color;}
   }
 }

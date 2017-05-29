@@ -168,8 +168,8 @@
     xhr.send();
 
     var xhr2 = new XMLHttpRequest();
-    // xhr2.open('GET', corsHeadersURL + owmBaseURL + "weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=" + owmAPIKey);
-    xhr2.open('GET', owmBaseURL + "weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=" + owmAPIKey);
+    xhr2.open('GET', corsHeadersURL + owmBaseURL + "weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=" + owmAPIKey);
+    // xhr2.open('GET', owmBaseURL + "weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=" + owmAPIKey);
     xhr2.addEventListener('load', function(event) {
       owmWeatherData = JSON.parse(event.target.response);
       renderLocation();

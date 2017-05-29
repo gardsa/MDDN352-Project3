@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Foresee</title>
+    <title>WeatherFlex</title>
 
     <!-- OpenGraph -->
-    <meta property="og:title" content="Foresee">
+    <meta property="og:title" content="WeatherFlex">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://foresee-app.surge.sh/">
-    <meta property="og:image" content="https://foresee.surge.sh/assets/touch-icon-256x256.png">
+    <meta property="og:url" content="https://weatherflex.surge.sh/">
+    <meta property="og:image" content="https://weatherflex.surge.sh/assets/touch-icon-256x256.png">
     <meta property="og:description" name="description" content="Your Weather, Your Way">
 
     <!-- Web App Manifest -->
@@ -42,15 +42,22 @@
   <body class="theme-default screen-home">
 
     <!-- LOGIN SCREEN -->
-    <div class="login-container">
+    <div id="loginScreen" class="login-container">
       <div class="login-content">
-        <input id="txtEmail" type="email" placeholder="Email">
+        <img src="assets/weatherflex-login.svg">
 
-        <input id="txtPassword" type="password" placeholder="Password">
+        <ul class="list-module login-buttons">
+          <li id="linkLogin" class="btn">Log In</li>
+          <li id="linkSignup" class="btn">Sign Up</li>
+        </ul>
 
-        <button id="btnLogin" class="btn">Log in</button>
-
-        <button id="btnSignup" class="btn">Sign Up</button>
+        <ul class="list-module login-inputs">
+          <input id="txtEmail" type="email" placeholder="Email">
+          <input id="txtPassword" type="password" placeholder="Password">
+          <li id="btnLogin" class="btn">Login</li>
+          <li id="btnSignup" class="btn">Go</li>
+          <li id="loginBackBtn" class="btn">Back</li>
+        </ul>
       </div>
     </div>
 
@@ -58,23 +65,28 @@
     <div class="icon-bar">
       <ul>
         <li id="settings">
-          <img src="assets/icons/settings.svg">
+          <img class="non-selected" src="assets/icons/settings.svg">
+          <img class="selected" src="assets/icons/settings-selected.svg">
           <p>Settings</p>
         </li>
         <li id="theme">
-          <img src="assets/icons/theme.svg">
+          <img class="non-selected" src="assets/icons/theme.svg">
+          <img class="selected" src="assets/icons/theme-selected.svg">
           <p>Theme</p>
         </li>
         <li id="home">
-          <img src="assets/icons/logo.svg">
+          <img class="non-selected" src="assets/icons/logo.svg">
+          <img class="selected" src="assets/icons/logo-selected.svg">
           <p>Home</p>
         </li>
         <li id="locations">
-          <img src="assets/icons/locations.svg">
+          <img class="non-selected" src="assets/icons/locations.svg">
+          <img class="selected" src="assets/icons/locations-selected.svg">
           <p>Locations</p>
         </li>
         <li id="editor">
-          <img src="assets/icons/editor.svg">
+          <img class="non-selected" src="assets/icons/editor.svg">
+          <img class="selected" src="assets/icons/editor-selected.svg">
           <p>Editor</p>
         </li>
       </ul>
@@ -83,12 +95,44 @@
     <!-- SETTINGS SCREEN -->
     <div class="screen settings-container">
       <h3 class="screen-heading">Settings</h3>
-      <button id="btnLogout" class="btn">Sign out</button>
+      <ul class="list-module">
+        <li>
+          User Settings
+          <img src="assets/icons/selection-arrow.svg">
+        </li>
+        <li>
+          About
+          <img src="assets/icons/selection-arrow.svg">
+        </li>
+        <li id="btnLogout">Sign Out</li>
+      </ul>
     </div>
 
     <!-- THEME SCREEN -->
     <div class="screen theme-container">
       <h3 class="screen-heading">Theme</h3>
+      <ul class="list-module">
+        <li class="theme-default">
+          <span class="theme-name">Default</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li class="theme-light">
+          <span class="theme-name">Light</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li class="theme-dark">
+          <span class="theme-name">Dark</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li class="theme-mono">
+          <span class="theme-name">Mono</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+      </ul>
     </div>
 
     <!-- LOCATIONS SCREEN -->
@@ -99,6 +143,14 @@
     <!-- EDITOR SCREEN-->
     <div class="screen editor-container">
       <h3 class="screen-heading">Editor</h3>
+      <ul class="list-module">
+        <li>Temperature</li>
+        <li>Rainfall</li>
+        <li>Wind</li>
+        <li>Cloud Cover</li>
+        <li>Pressure</li>
+        <li>Humidity</li>
+      </ul>
     </div>
 
     <!-- HOME SCREEN -->

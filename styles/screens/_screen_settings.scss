@@ -1,3 +1,10 @@
 .settings-container {
+  li img {
+    float: right;
+    height: 0.75em;
+  }
 
+  #btnLogout {
+    background-color: rgba($default-secondary-color,0.6);
+  }
 }

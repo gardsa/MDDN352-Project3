@@ -1,0 +1,13 @@
+.list-module {
+  margin: 0 auto;
+  width: 87.5%;
+  font-family: $body-font;
+
+  li {
+    margin: 1em 0;
+    padding: 0.875em;
+    background-color: $default-secondary-color;
+    box-sizing: border-box;
+    border-radius: 0.5em;
+  }
+}
