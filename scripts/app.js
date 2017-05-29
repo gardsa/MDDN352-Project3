@@ -32,7 +32,7 @@
     // Sign in
     var promise = auth.signInWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
-    promise.then(setupUser);
+    // promise.then(setupUser);
   }
 
   function signupHandler() {
@@ -162,13 +162,14 @@
     xhr.open('GET', corsHeadersURL + darkSkyBaseURL + darkSkyAPIKey + '/' + lat + ',' + lng + '?units=si&exclude=minutely,alerts,flags');
     xhr.addEventListener('load', function(event) {
       weatherData = JSON.parse(event.target.response);
-      // console.log(weatherData);
+      console.log(weatherData);
       renderWeatherInfo();
     });
     xhr.send();
 
     var xhr2 = new XMLHttpRequest();
-    xhr2.open('GET', corsHeadersURL + owmBaseURL + "weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=" + owmAPIKey);
+    // xhr2.open('GET', corsHeadersURL + owmBaseURL + "weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=" + owmAPIKey);
+    xhr2.open('GET', owmBaseURL + "weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=" + owmAPIKey);
     xhr2.addEventListener('load', function(event) {
       owmWeatherData = JSON.parse(event.target.response);
       renderLocation();
@@ -280,8 +281,8 @@
   }
 
   d.addEventListener('DOMContentLoaded', function(){
-    d.getElementById('user-location-link').addEventListener('click', getUserLocation);
+    // d.getElementById('user-location-link').addEventListener('click', getUserLocation);
     getUserLocation();
-    d.getElementById('location-search-btn').addEventListener('click', addLocation);
+    // d.getElementById('location-search-btn').addEventListener('click', addLocation);
   });
 })(document);

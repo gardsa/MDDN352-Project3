@@ -1,0 +1,59 @@
+.module-container {
+  width: 100%;
+  font-family: $heading-font;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.grid {
+  width: calc(90%);
+  padding: 5%;
+  margin: 0 auto;
+}
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.grid-sizer {
+  width: calc(90% / 3);
+}
+
+.gutter-sizer {
+  width: 4%;
+}
+
+.grid-item {
+  width: calc((100% / 3) - 4.5%);
+  height: 0;
+  padding-bottom: calc((100% / 3) - 4.5%);
+  float: left;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.grid-item-width3 {
+  width: 90%;
+  height: 0;
+  padding-bottom: 50%;
+  text-align: left;
+}
+
+.grid-item:hover {
+  border-color: $default-secondary-color;
+  cursor: move;
+}
+
+.grid-item.is-dragging,
+.grid-item.is-positioning-post-drag {
+  z-index: 2;
+}
+
+.packery-drop-placeholder {
+  border: 1px dashed $default-secondary-color;
+  border-radius: 5px;
+  margin: -1px -1px 0 0;
+  -webkit-transition: -webkit-transform 0.2s;
+          transition: transform 0.2s;
+}

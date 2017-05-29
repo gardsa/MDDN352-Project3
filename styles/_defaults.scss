@@ -1,0 +1,66 @@
+body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  letter-spacing: .09375em;
+  overflow-x: hidden;
+  background-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: $heading-font;
+}
+
+p {
+  font-family: $body-font;
+}
+
+.screen-settings {
+  .theme-container, .home-container, .locations-container, .editor-container {
+    display: none;
+  }
+}
+
+.screen-theme {
+  .settings-container, .home-container, .locations-container, .editor-container {
+    display: none;
+  }
+}
+
+.screen-home {
+  .settings-container, .theme-container, .locations-container, .editor-container {
+    display: none;
+  }
+}
+
+.screen-locations {
+  .settings-container, .theme-container, .home-container, .editor-container {
+    display: none;
+  }
+}
+
+.screen-editor {
+  .settings-container, .theme-container, .home-container, .locations-container {
+    display: none;
+  }
+}
+
+.screen {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 3em;
+  left: 0;
+
+  .screen-heading {
+    margin: 1.5em 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}

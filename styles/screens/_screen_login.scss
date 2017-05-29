@@ -1,0 +1,39 @@
+.login-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  text-align: center;
+  z-index: 9999;
+
+  .login-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    input, button {
+      display: block;
+      width: 100%;
+      margin: .5em auto;
+      text-align: center;
+    }
+
+    input {
+      border-color: $default-secondary-color;
+    }
+  }
+
+
+  .login-content button {
+    background-color: black;
+    border-color: black;
+    color: white;
+  }
+}
+
+.logged-in .login-container {
+  display: none;
+}

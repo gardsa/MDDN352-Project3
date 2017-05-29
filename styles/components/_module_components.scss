@@ -1,0 +1,55 @@
+.current-temp {
+  display: inline-block;
+  padding: 30px 0 30px 30px;
+  font-size: 6.25em;
+}
+
+sup {
+  font-size: 60%;
+  vertical-align: super;
+}
+
+.forecast-temp {
+  display: inline-block;
+  padding: 40px 30px 40px 0;
+  float: right;
+  text-align: right;
+  font-size: 2.5em;
+  opacity: 0.8;
+}
+
+.current-wind, .current-cloud, #cloud-canvas, .current-precip {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.current-precip .intensity {
+  letter-spacing: normal;
+}
+
+.speed, .intensity {
+  font-size: 1.75em;
+}
+
+.units {
+  font-size: 0.4375em;
+}
+
+#direction-icon, #cloud-circle, .canvas-container, #precip-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 90%;
+  height: 90%;
+  margin: auto;
+}
+
+#cloud-canvas {
+  width: 78%;
+  height: 78%;
+}

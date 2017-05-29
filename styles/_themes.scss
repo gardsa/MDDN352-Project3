@@ -1,0 +1,15 @@
+.theme-default {
+  @include theme(#03D2AB, #F81268);
+}
+
+.theme-light {
+  @include theme(#4CB2D4, #88C542);
+}
+
+// .theme-dark {
+//   @include theme(#, #);
+// }
+//
+// .theme-mono {
+//   @include theme(#, #);
+// }

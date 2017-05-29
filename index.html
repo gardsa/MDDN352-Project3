@@ -23,8 +23,10 @@
 
     <!-- CSS Reset, custom styles, and Google Fonts -->
     <link rel="stylesheet" type="text/css" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
-    <link rel="stylesheet" type="text/css" href="styles/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="styles/main.scss"> -->
+    <link rel="stylesheet" type="text/css" href="output.css">
+    <link href="http://overpass-30e2.kxcdn.com/overpass.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
 
     <!-- Firebase Setup -->
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
@@ -37,6 +39,90 @@
     <script src="scripts/packery.pkgd.min.js"></script>
     <script src="scripts/draggabilly.pkgd.min.js"></script>
   </head>
-  <body>
-    
+  <body class="theme-default screen-home">
+
+    <!-- LOGIN SCREEN -->
+    <div class="login-container">
+      <div class="login-content">
+        <input id="txtEmail" type="email" placeholder="Email">
+
+        <input id="txtPassword" type="password" placeholder="Password">
+
+        <button id="btnLogin" class="btn">Log in</button>
+
+        <button id="btnSignup" class="btn">Sign Up</button>
+      </div>
+    </div>
+
+    <!-- ICON NAVIGATION BAR -->
+    <div class="icon-bar">
+      <ul>
+        <li id="settings">
+          <img src="assets/icons/settings.svg">
+          <p>Settings</p>
+        </li>
+        <li id="theme">
+          <img src="assets/icons/theme.svg">
+          <p>Theme</p>
+        </li>
+        <li id="home">
+          <img src="assets/icons/logo.svg">
+          <p>Home</p>
+        </li>
+        <li id="locations">
+          <img src="assets/icons/locations.svg">
+          <p>Locations</p>
+        </li>
+        <li id="editor">
+          <img src="assets/icons/editor.svg">
+          <p>Editor</p>
+        </li>
+      </ul>
+    </div>
+
+    <!-- SETTINGS SCREEN -->
+    <div class="screen settings-container">
+      <h3 class="screen-heading">Settings</h3>
+      <button id="btnLogout" class="btn">Sign out</button>
+    </div>
+
+    <!-- THEME SCREEN -->
+    <div class="screen theme-container">
+      <h3 class="screen-heading">Theme</h3>
+    </div>
+
+    <!-- LOCATIONS SCREEN -->
+    <div class="screen locations-container">
+      <h3 class="screen-heading">Locations</h3>
+    </div>
+
+    <!-- EDITOR SCREEN-->
+    <div class="screen editor-container">
+      <h3 class="screen-heading">Editor</h3>
+    </div>
+
+    <!-- HOME SCREEN -->
+    <div class="screen home-container">
+      <div class="content">
+        <div class="location-info">
+          <h2 id="location"></h2>
+          <p id="description"></p>
+        </div>
+
+        <div class="module-container">
+          <div class="grid">
+            <div class="grid-sizer"></div>
+            <div class="gutter-sizer"></div>
+            <div id="gridMain" class="grid-item grid-item-width3"></div>
+            <div id="grid1" class="grid-item"></div>
+            <div id="grid2" class="grid-item"></div>
+            <div id="grid3" class="grid-item"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts to be loaded once all content has loaded -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/events.js"></script>
   </body>
