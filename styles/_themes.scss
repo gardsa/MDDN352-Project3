@@ -6,10 +6,10 @@
   @include theme(#4CB2D4, #88C542);
 }
 
-// .theme-dark {
-//   @include theme(#, #);
-// }
-//
-// .theme-mono {
-//   @include theme(#, #);
-// }
+.theme-dark {
+  @include theme(#121258, #77A9D7);
+}
+
+.theme-mono {
+  @include theme(#363636, #7D7D7D);
+}

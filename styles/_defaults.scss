@@ -18,3 +18,7 @@ h1, h2, h3, h4, h5 {
 p {
   font-family: $body-font;
 }
+
+input, button {
+  border-style: solid;
+}

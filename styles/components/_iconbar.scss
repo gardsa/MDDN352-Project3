@@ -16,7 +16,8 @@
     li {
       width: 20%;
       text-align: center;
-      padding-top: 6px;
+      padding-top: 13px; // if no text under icons
+      // padding-top: 6px; // if text under icons
       .selected {
         display: none;
       }

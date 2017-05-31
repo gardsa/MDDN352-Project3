@@ -6,6 +6,10 @@
   background-color: #03D2AB; }
 .theme-default .grid-item-width3 {
   background-color: #F81268; }
+.theme-default #location-search {
+  border-color: #03D2AB; }
+.theme-default #location-search-btn {
+  background-color: #03D2AB; }
 
 .theme-light .screen-heading {
   color: #4CB2D4; }
@@ -15,6 +19,36 @@
   background-color: #4CB2D4; }
 .theme-light .grid-item-width3 {
   background-color: #88C542; }
+.theme-light #location-search {
+  border-color: #4CB2D4; }
+.theme-light #location-search-btn {
+  background-color: #4CB2D4; }
+
+.theme-dark .screen-heading {
+  color: #121258; }
+.theme-dark .location-info {
+  color: #121258; }
+.theme-dark .grid-item {
+  background-color: #121258; }
+.theme-dark .grid-item-width3 {
+  background-color: #77A9D7; }
+.theme-dark #location-search {
+  border-color: #121258; }
+.theme-dark #location-search-btn {
+  background-color: #121258; }
+
+.theme-mono .screen-heading {
+  color: #363636; }
+.theme-mono .location-info {
+  color: #363636; }
+.theme-mono .grid-item {
+  background-color: #363636; }
+.theme-mono .grid-item-width3 {
+  background-color: #7D7D7D; }
+.theme-mono #location-search {
+  border-color: #363636; }
+.theme-mono #location-search-btn {
+  background-color: #363636; }
 
 body {
   position: absolute;
@@ -32,6 +66,9 @@ h1, h2, h3, h4, h5 {
 
 p {
   font-family: "Didact Gothic", sans-serif; }
+
+input, button {
+  border-style: solid; }
 
 .screen-settings .theme-container, .screen-settings .home-container, .screen-settings .locations-container, .screen-settings .editor-container {
   display: none; }
@@ -54,7 +91,8 @@ p {
   top: 0;
   right: 0;
   bottom: 3em;
-  left: 0; }
+  left: 0;
+  overflow-y: scroll; }
   .screen .screen-heading {
     margin: 1.5em 0;
     font-size: 1.125em;
@@ -90,7 +128,7 @@ p {
     .icon-bar ul li {
       width: 20%;
       text-align: center;
-      padding-top: 6px; }
+      padding-top: 13px; }
       .icon-bar ul li .selected {
         display: none; }
       .icon-bar ul li .non-selected {
@@ -347,5 +385,26 @@ sup {
     font-size: 2em; }
   .home-container .content .location-info #description {
     font-weight: 200; }
+
+.locations-container .list-module .search {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  background-color: #FFFFFF; }
+.locations-container .list-module #location-search, .locations-container .list-module #location-search-btn {
+  height: inherit;
+  border-radius: 0.5em;
+  font-size: 0.875em; }
+.locations-container .list-module #location-search {
+  flex-basis: 75%;
+  padding: 0.875em; }
+.locations-container .list-module #location-search-btn {
+  text-align: center;
+  flex-basis: 20%;
+  padding: 0.875em 0;
+  border: none;
+  color: #FFFFFF; }
 
 /*# sourceMappingURL=output.css.map */

@@ -65,6 +65,7 @@
       d.body.classList.add('logged-in');
       console.log('User Details:');
       console.log(user);
+      setupUser();
     } else {
       d.body.classList.remove('logged-in');
       console.log('not logged in');
@@ -92,11 +93,12 @@
       firebase.database().ref('/users/' + user.uid + '/locations/').once('value').then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var node = d.createElement('li'),
-          parentNode = d.getElementById('menu-options'),
-          refNode = d.getElementById('settings-link');
+          parentNode = d.getElementById('locations-list'),
+          refNode = d.getElementById('add-location-anchor');
 
-          node.classList.add('menu-elem');
-          node.innerHTML = '<p>' + childSnapshot.val().name + '</p>';
+          node.innerHTML = childSnapshot.val().name;
+          node.dataset.lat = childSnapshot.val().lat;
+          node.dataset.lng = childSnapshot.val().lng;
           parentNode.insertBefore(node, refNode);
         });
       });
@@ -137,18 +139,18 @@
   }
 
   function addLocation() {
-    var locationSearchElem = d.getElementById('location-search').value;
+    var locationSearchElem = d.getElementById('location-search');
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', openCageDataGeocodeURL + locationSearchElem + '&key=' + openCageDataAPIKey);
+    xhr.open('GET', openCageDataGeocodeURL + locationSearchElem.value + '&key=' + openCageDataAPIKey);
     xhr.addEventListener('load', function(event) {
       locationParams = JSON.parse(event.target.response);
       if (locationParams.results[0]) {
         var lat = locationParams.results[0].geometry.lat,
             lng = locationParams.results[0].geometry.lng;
-        getWeatherData(lat, lng);
-        saveLocation(locationSearchElem, lat, lng);
+        saveLocation(locationSearchElem.value, lat, lng);
         renderLocations();
+        locationSearchElem.placeholder = 'Search location...';
       }
       else {
         // TODO: error state
@@ -281,8 +283,7 @@
   }
 
   d.addEventListener('DOMContentLoaded', function(){
-    // d.getElementById('user-location-link').addEventListener('click', getUserLocation);
     getUserLocation();
-    // d.getElementById('location-search-btn').addEventListener('click', addLocation);
+    d.getElementById('location-search-btn').addEventListener('click', addLocation);
   });
 })(document);
