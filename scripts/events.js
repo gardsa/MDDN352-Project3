@@ -39,6 +39,16 @@
     d.getElementById('loginScreen').classList.remove('signup-function');
     d.getElementById('loginScreen').classList.remove('login-function');
   });
+
+  var editLocationsBtn = d.getElementById('edit-locations-btn');
+  editLocationsBtn.addEventListener('click', function(){
+    d.getElementById('locations-list').classList.toggle('delete-locations');
+    if (editLocationsBtn.innerHTML == 'Edit'){
+      editLocationsBtn.innerHTML = 'Cancel';
+    } else {
+      editLocationsBtn.innerHTML = 'Edit'
+    }
+  });
   // function toggleMenuClass() {
   //   d.body.classList.toggle('slideout-open');
   //   if (d.body.classList.contains('dropdown-open')) {

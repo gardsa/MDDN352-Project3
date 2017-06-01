@@ -1,7 +1,6 @@
 (function(d){
 
   // APP FUNCTIONALITY
-
   var openCageDataGeocodeURL = 'http://api.opencagedata.com/geocode/v1/json?q=',
       openCageDataAPIKey = '9f4842edccce418bbc2bd963ebb8d92b';
 
@@ -36,7 +35,6 @@
   }
 
   function signupHandler() {
-    // Get email and password
     // TODO: check for real email/weak/short password
     var email = txtEmail.value,
         password = txtPassword.value,
@@ -50,6 +48,11 @@
 
   function logoutHandler() {
     firebase.auth().signOut();
+    clearUserInfo();
+  }
+
+  function clearUserInfo() {
+    // TODO: get rid of all locations rendered
   }
 
   btnLogin.addEventListener('click', loginHandler);
@@ -57,27 +60,69 @@
   btnLogout.addEventListener('click', logoutHandler);
 
 
-  // assign firebaseUser variable
-  var user;
-  firebase.auth().onAuthStateChanged(firebaseUser => {
-    if (firebaseUser) {
-      user = firebaseUser;
-      d.body.classList.add('logged-in');
-      console.log('User Details:');
-      console.log(user);
-      setupUser();
-    } else {
-      d.body.classList.remove('logged-in');
-      console.log('not logged in');
-    }
-  });
+  var user,
+      db,
+      locationsRef;
+
+  function checkAuthState() {
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        user = firebaseUser;
+        d.body.classList.add('logged-in');
+        db  = firebase.database().ref('users/' + user.uid);
+        setupUser();
+      } else {
+        d.body.classList.remove('logged-in');
+        console.log('not logged in');
+      }
+    });
+  }
 
   function setupUser() {
-    renderLocations();
+    // SET UP LOCATIONS SCREEN
+    locationsRef = db.child('locations');
+    if (locationsRef) {
+      locationsRef.once('value').then(function(snapshot) {
+        snapshot.forEach(renderLocations);
+      });
+    } else {
+      // TODO: locations not existing state
+      console.log('No locations found');
+    }
+  }
+
+  // SAVED LOCATIONS FUNCTIONALITY
+
+  function addLocation() {
+    var locationSearchElem = d.getElementById('location-search').value,
+        locationsRef = db.child('locations');
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', openCageDataGeocodeURL + locationSearchElem + '&key=' + openCageDataAPIKey);
+    xhr.addEventListener('load', function(event) {
+      locationParams = JSON.parse(event.target.response);
+      if (locationParams.results[0]) {
+        var lat = locationParams.results[0].geometry.lat,
+            lng = locationParams.results[0].geometry.lng;
+        saveLocation(locationSearchElem, lat, lng);
+        locationsRef.once('value').then(function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            if (childSnapshot.val().name == locationSearchElem){
+              renderLocations(childSnapshot);
+            }
+          });
+        });
+        d.getElementById('location-search').value = '';
+      }
+      else {
+        // TODO: error state
+      }
+    });
+    xhr.send();
   }
 
   function saveLocation(locationName, lat, lng) {
-    var locationsRef = firebase.database().ref('users/' + user.uid).child('locations');
+    var locationsRef = db.child('locations');
 
     locationsRef.push({
       name: locationName,
@@ -86,29 +131,44 @@
     });
   }
 
-  function renderLocations() {
-    var locationsRef = firebase.database().ref('users/' + user.uid).child('locations');
+  function renderLocations(snapshot) {
+    var node = d.createElement('li'),
+        parentNode = d.getElementById('locations-list'),
+        refNode = d.getElementById('add-location-anchor');
 
-    if (locationsRef) {
-      firebase.database().ref('/users/' + user.uid + '/locations/').once('value').then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-          var node = d.createElement('li'),
-          parentNode = d.getElementById('locations-list'),
-          refNode = d.getElementById('add-location-anchor');
+    node.innerHTML = snapshot.val().name + '<span class="delete-location-btn" id="delete-' + snapshot.val().name + '">x</span>';
+    node.id = snapshot.val().name;
+    node.dataset.lat = snapshot.val().lat;
+    node.dataset.lng = snapshot.val().lng;
+    node.dataset.name = snapshot.val().name;
+    parentNode.insertBefore(node, refNode);
 
-          node.innerHTML = childSnapshot.val().name;
-          node.dataset.lat = childSnapshot.val().lat;
-          node.dataset.lng = childSnapshot.val().lng;
-          parentNode.insertBefore(node, refNode);
-        });
-      });
-    }
-    else {
-      // TODO: locations not existing state
-      console.log('No locations found');
-    }
+    d.getElementById('delete-' + snapshot.val().name).addEventListener('click', function() {
+      deleteLocation(this.parentElement);
+    });
 
+    d.getElementById(snapshot.val().name).addEventListener('click', function(){
+      getWeatherData(snapshot.val().lat, snapshot.val().lng);
+      toggleScreenClass('screen-home');
+    });
   }
+
+  function deleteLocation(elem) {
+    var location,
+        parent = elem.parentElement;
+    locationsRef.once('value').then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        if (childSnapshot.val().name == elem.dataset.name){
+          childSnapshot.ref.remove();
+          parent.removeChild(elem);
+        }
+      });
+    });
+  }
+
+  // THEME FUNCTIONALITY
+
+  
 
 
 
@@ -136,27 +196,6 @@
 
   function locationError(event) {
     d.body.classList.add('location-error');
-  }
-
-  function addLocation() {
-    var locationSearchElem = d.getElementById('location-search');
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', openCageDataGeocodeURL + locationSearchElem.value + '&key=' + openCageDataAPIKey);
-    xhr.addEventListener('load', function(event) {
-      locationParams = JSON.parse(event.target.response);
-      if (locationParams.results[0]) {
-        var lat = locationParams.results[0].geometry.lat,
-            lng = locationParams.results[0].geometry.lng;
-        saveLocation(locationSearchElem.value, lat, lng);
-        renderLocations();
-        locationSearchElem.placeholder = 'Search location...';
-      }
-      else {
-        // TODO: error state
-      }
-    });
-    xhr.send();
   }
 
   function getWeatherData(lat, lng) {
@@ -282,8 +321,63 @@
 
   }
 
+
+  // EVENTS
+
+  function toggleScreenClass(newScreenClass) {
+    var screenClasses = ['screen-settings', 'screen-theme', 'screen-locations', 'screen-editor', 'screen-home'];
+
+    for (const screenClass of screenClasses) {
+      if (d.body.classList.contains(screenClass)){
+        d.body.classList.remove(screenClass);
+      }
+    }
+
+    d.body.classList.add(newScreenClass);
+  }
+
+  d.getElementById('settings').addEventListener('click', function() {
+    toggleScreenClass('screen-settings');
+  });
+  d.getElementById('theme').addEventListener('click', function() {
+    toggleScreenClass('screen-theme');
+  });
+  d.getElementById('home').addEventListener('click', function() {
+    toggleScreenClass('screen-home');
+  });
+  d.getElementById('locations').addEventListener('click', function() {
+    toggleScreenClass('screen-locations');
+  });
+  d.getElementById('editor').addEventListener('click', function() {
+    toggleScreenClass('screen-editor');
+  });
+
+  d.getElementById('linkLogin').addEventListener('click', function(){
+    d.getElementById('loginScreen').classList.add('login-function');
+  });
+
+  d.getElementById('linkSignup').addEventListener('click', function(){
+    d.getElementById('loginScreen').classList.add('signup-function');
+  });
+
+  d.getElementById('loginBackBtn').addEventListener('click', function(){
+    d.getElementById('loginScreen').classList.remove('signup-function');
+    d.getElementById('loginScreen').classList.remove('login-function');
+  });
+
+  var editLocationsBtn = d.getElementById('edit-locations-btn');
+  editLocationsBtn.addEventListener('click', function(){
+    d.getElementById('locations-list').classList.toggle('delete-locations');
+    if (editLocationsBtn.innerHTML == 'Edit'){
+      editLocationsBtn.innerHTML = 'Cancel';
+    } else {
+      editLocationsBtn.innerHTML = 'Edit'
+    }
+  });
+
   d.addEventListener('DOMContentLoaded', function(){
     getUserLocation();
+    checkAuthState();
     d.getElementById('location-search-btn').addEventListener('click', addLocation);
   });
 })(document);

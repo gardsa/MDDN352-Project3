@@ -10,8 +10,8 @@
     }
     #location-search, #location-search-btn {
       height: inherit;
-      border-radius: 0.5em;
       font-size: 0.875em;
+      border-radius: 0.5em;
     }
     #location-search {
       flex-basis: 75%;
@@ -24,5 +24,23 @@
       border: none;
       color: #FFFFFF;
     }
+    #edit-locations-btn {
+      width: 100%;
+      height: inherit;
+      margin-top: 2em;
+      padding: 0.875em;
+      font-size: 0.875em;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 0.5em;
+    }
+    .delete-location-btn {
+      height: inherit;
+      display: none;
+      float: right;
+    }
+  }
+  .delete-locations .delete-location-btn {
+    display: inline-block;
   }
 }

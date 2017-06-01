@@ -395,8 +395,8 @@ sup {
   background-color: #FFFFFF; }
 .locations-container .list-module #location-search, .locations-container .list-module #location-search-btn {
   height: inherit;
-  border-radius: 0.5em;
-  font-size: 0.875em; }
+  font-size: 0.875em;
+  border-radius: 0.5em; }
 .locations-container .list-module #location-search {
   flex-basis: 75%;
   padding: 0.875em; }
@@ -406,5 +406,20 @@ sup {
   padding: 0.875em 0;
   border: none;
   color: #FFFFFF; }
+.locations-container .list-module #edit-locations-btn {
+  width: 100%;
+  height: inherit;
+  margin-top: 2em;
+  padding: 0.875em;
+  font-size: 0.875em;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 0.5em; }
+.locations-container .list-module .delete-location-btn {
+  height: inherit;
+  display: none;
+  float: right; }
+.locations-container .delete-locations .delete-location-btn {
+  display: inline-block; }
 
 /*# sourceMappingURL=output.css.map */
