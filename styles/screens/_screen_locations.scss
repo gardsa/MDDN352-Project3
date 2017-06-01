@@ -1,6 +1,6 @@
 .locations-container {
   .list-module {
-    .search {
+    .search, .location {
       display: flex;
       flex-wrap: nowrap;
       justify-content: space-between;
@@ -8,7 +8,7 @@
       padding:0;
       background-color: #FFFFFF;
     }
-    #location-search, #location-search-btn {
+    #location-search, #location-search-btn, .location-name, .delete-location-btn{
       height: inherit;
       font-size: 0.875em;
       border-radius: 0.5em;
@@ -24,23 +24,41 @@
       border: none;
       color: #FFFFFF;
     }
+    .location-name {
+      box-sizing: border-box;
+      padding: 0.875em;
+      background-color: $default-secondary-color;
+      font-size: 1em;
+      flex-basis: 100%;
+    }
+    .delete-location-btn {
+      width: 0px;
+      flex-basis: 0;
+      text-align: center;
+      padding: 0.875em 0;
+      color: #FFFFFF;
+    }
     #edit-locations-btn {
       width: 100%;
       height: inherit;
       margin-top: 2em;
       padding: 0.875em;
       font-size: 0.875em;
+      background-color: rgba($default-secondary-color,0.6);
       color: #FFFFFF;
       border: none;
       border-radius: 0.5em;
     }
+  }
+  .delete-locations {
+    .location-name {
+      flex-basis: 75%;
+    }
     .delete-location-btn {
-      height: inherit;
-      display: none;
-      float: right;
+      display: inline-block;
+      flex-basis: 20%;
+      background-color: rgba($default-secondary-color,0.6);
     }
   }
-  .delete-locations .delete-location-btn {
-    display: inline-block;
-  }
+
 }

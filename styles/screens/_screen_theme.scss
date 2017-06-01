@@ -21,21 +21,34 @@
       flex-basis: 20%;
       padding: 0.875em 0;
     }
-    .theme-default {
+    #theme-default {
       .theme-color-one {background-color: #03D2AB;}
       .theme-color-two {background-color: #F81268;}
     }
-    .theme-light {
+    #theme-light {
       .theme-color-one {background-color: #4CB2D4;}
       .theme-color-two {background-color: #88C542;}
     }
-    .theme-dark {
+    #theme-dark {
       .theme-color-one {background-color: #121258;}
       .theme-color-two {background-color: #77A9D7;}
     }
-    .theme-mono {
+    #theme-mono {
       .theme-color-one {background-color: #363636;}
       .theme-color-two {background-color: #7D7D7D;}
     }
   }
+}
+
+.theme-default #theme-default {
+
+}
+.theme-light #theme-light {
+
+}
+.theme-dark #theme-dark {
+
+}
+.theme-mono #theme-mono {
+
 }

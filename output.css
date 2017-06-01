@@ -357,21 +357,21 @@ sup {
 .theme-container .list-module .theme-color-one, .theme-container .list-module .theme-color-two {
   flex-basis: 20%;
   padding: 0.875em 0; }
-.theme-container .list-module .theme-default .theme-color-one {
+.theme-container .list-module #theme-default .theme-color-one {
   background-color: #03D2AB; }
-.theme-container .list-module .theme-default .theme-color-two {
+.theme-container .list-module #theme-default .theme-color-two {
   background-color: #F81268; }
-.theme-container .list-module .theme-light .theme-color-one {
+.theme-container .list-module #theme-light .theme-color-one {
   background-color: #4CB2D4; }
-.theme-container .list-module .theme-light .theme-color-two {
+.theme-container .list-module #theme-light .theme-color-two {
   background-color: #88C542; }
-.theme-container .list-module .theme-dark .theme-color-one {
+.theme-container .list-module #theme-dark .theme-color-one {
   background-color: #121258; }
-.theme-container .list-module .theme-dark .theme-color-two {
+.theme-container .list-module #theme-dark .theme-color-two {
   background-color: #77A9D7; }
-.theme-container .list-module .theme-mono .theme-color-one {
+.theme-container .list-module #theme-mono .theme-color-one {
   background-color: #363636; }
-.theme-container .list-module .theme-mono .theme-color-two {
+.theme-container .list-module #theme-mono .theme-color-two {
   background-color: #7D7D7D; }
 
 .home-container .content .location-info {
@@ -386,14 +386,14 @@ sup {
   .home-container .content .location-info #description {
     font-weight: 200; }
 
-.locations-container .list-module .search {
+.locations-container .list-module .search, .locations-container .list-module .location {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 100%;
   padding: 0;
   background-color: #FFFFFF; }
-.locations-container .list-module #location-search, .locations-container .list-module #location-search-btn {
+.locations-container .list-module #location-search, .locations-container .list-module #location-search-btn, .locations-container .list-module .location-name, .locations-container .list-module .delete-location-btn {
   height: inherit;
   font-size: 0.875em;
   border-radius: 0.5em; }
@@ -406,20 +406,33 @@ sup {
   padding: 0.875em 0;
   border: none;
   color: #FFFFFF; }
+.locations-container .list-module .location-name {
+  box-sizing: border-box;
+  padding: 0.875em;
+  background-color: #9A9A9A;
+  font-size: 1em;
+  flex-basis: 100%; }
+.locations-container .list-module .delete-location-btn {
+  width: 0px;
+  flex-basis: 0;
+  text-align: center;
+  padding: 0.875em 0;
+  color: #FFFFFF; }
 .locations-container .list-module #edit-locations-btn {
   width: 100%;
   height: inherit;
   margin-top: 2em;
   padding: 0.875em;
   font-size: 0.875em;
+  background-color: rgba(154, 154, 154, 0.6);
   color: #FFFFFF;
   border: none;
   border-radius: 0.5em; }
-.locations-container .list-module .delete-location-btn {
-  height: inherit;
-  display: none;
-  float: right; }
+.locations-container .delete-locations .location-name {
+  flex-basis: 75%; }
 .locations-container .delete-locations .delete-location-btn {
-  display: inline-block; }
+  display: inline-block;
+  flex-basis: 20%;
+  background-color: rgba(154, 154, 154, 0.6); }
 
 /*# sourceMappingURL=output.css.map */

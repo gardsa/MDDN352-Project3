@@ -89,6 +89,13 @@
       // TODO: locations not existing state
       console.log('No locations found');
     }
+
+    themesRef = db.child('themes');
+    if (themesRef) {
+      themesRef.once('value').then(function(snapshot) {
+        toggleThemeClass(snapshot.val().theme);
+      });
+    }
   }
 
   // SAVED LOCATIONS FUNCTIONALITY
@@ -136,11 +143,9 @@
         parentNode = d.getElementById('locations-list'),
         refNode = d.getElementById('add-location-anchor');
 
-    node.innerHTML = snapshot.val().name + '<span class="delete-location-btn" id="delete-' + snapshot.val().name + '">x</span>';
-    node.id = snapshot.val().name;
-    node.dataset.lat = snapshot.val().lat;
-    node.dataset.lng = snapshot.val().lng;
-    node.dataset.name = snapshot.val().name;
+    node.innerHTML = '<span class="location-name" id="' + snapshot.val().name + '">' + snapshot.val().name + '</span>' + '<span class="delete-location-btn" id="delete-' + snapshot.val().name + '">x</span>';
+    node.classList.add('location');
+    // node.id = snapshot.val().name;
     parentNode.insertBefore(node, refNode);
 
     d.getElementById('delete-' + snapshot.val().name).addEventListener('click', function() {
@@ -154,11 +159,13 @@
   }
 
   function deleteLocation(elem) {
+    console.log(elem);
     var location,
-        parent = elem.parentElement;
+        parent = elem.parentElement,
+        child = elem.firstChild;
     locationsRef.once('value').then(function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
-        if (childSnapshot.val().name == elem.dataset.name){
+        if (childSnapshot.val().name == child.id){
           childSnapshot.ref.remove();
           parent.removeChild(elem);
         }
@@ -166,10 +173,45 @@
     });
   }
 
+
   // THEME FUNCTIONALITY
 
-  
+  function toggleThemeClass(newThemeClass) {
+    var themeClasses = ['theme-default', 'theme-light', 'theme-dark', 'theme-mono'];
 
+    for (const themeClass of themeClasses) {
+      if (d.body.classList.contains(themeClass)){
+        d.body.classList.remove(themeClass);
+      }
+    }
+
+    d.body.classList.add(newThemeClass);
+  }
+
+  function setTheme() {
+    d.getElementById('theme-default').addEventListener('click', function() {
+      toggleThemeClass('theme-default');
+      saveTheme('theme-default');
+    });
+    d.getElementById('theme-light').addEventListener('click', function() {
+      toggleThemeClass('theme-light');
+      saveTheme('theme-light');
+    });
+    d.getElementById('theme-dark').addEventListener('click', function() {
+      toggleThemeClass('theme-dark');
+      saveTheme('theme-dark');
+    });
+    d.getElementById('theme-mono').addEventListener('click', function() {
+      toggleThemeClass('theme-mono');
+      saveTheme('theme-mono');
+    });
+  }
+
+  function saveTheme(theme) {
+    db.child('themes').set({
+      theme: theme
+    });
+  }
 
 
   // WEATHER FUNCTIONALITY
@@ -378,6 +420,7 @@
   d.addEventListener('DOMContentLoaded', function(){
     getUserLocation();
     checkAuthState();
+    setTheme();
     d.getElementById('location-search-btn').addEventListener('click', addLocation);
   });
 })(document);
