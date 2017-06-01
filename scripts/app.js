@@ -143,7 +143,7 @@
         parentNode = d.getElementById('locations-list'),
         refNode = d.getElementById('add-location-anchor');
 
-    node.innerHTML = '<span class="location-name" id="' + snapshot.val().name + '">' + snapshot.val().name + '</span>' + '<span class="delete-location-btn" id="delete-' + snapshot.val().name + '">x</span>';
+    node.innerHTML = '<span class="location-name" id="' + snapshot.val().name + '">' + snapshot.val().name + '</span>' + '<span class="delete-location-btn" id="delete-' + snapshot.val().name + '"><img src="assets/icons/remove.svg"></span>';
     node.classList.add('location');
     // node.id = snapshot.val().name;
     parentNode.insertBefore(node, refNode);
@@ -176,14 +176,18 @@
   // THEME FUNCTIONALITY
 
   function toggleThemeClass(newThemeClass) {
-    var themeClasses = ['theme-default', 'theme-light', 'theme-dark', 'theme-mono'];
+    var themeClasses = ['theme-default', 'theme-day', 'theme-night', 'theme-mono', 'theme-ocean', 'theme-divide', 'theme-element', 'theme-torchlight', 'theme-azure', 'theme-lavender', 'theme-pink', 'theme-warmth', 'theme-obscure', 'theme-morninglawn'];
 
     for (const themeClass of themeClasses) {
       if (d.body.classList.contains(themeClass)){
         d.body.classList.remove(themeClass);
+        d.getElementById(themeClass).classList.remove('selected');
       }
+      // if (d.getElementById(themeClass).classList.contains('selected')) {
+      //   d.getElementById(themeClass).classList.remove('selected');
+      // }
     }
-
+    d.getElementById(newThemeClass).classList.add('selected');
     d.body.classList.add(newThemeClass);
   }
 
@@ -192,17 +196,57 @@
       toggleThemeClass('theme-default');
       saveTheme('theme-default');
     });
-    d.getElementById('theme-light').addEventListener('click', function() {
-      toggleThemeClass('theme-light');
-      saveTheme('theme-light');
+    d.getElementById('theme-day').addEventListener('click', function() {
+      toggleThemeClass('theme-day');
+      saveTheme('theme-day');
     });
-    d.getElementById('theme-dark').addEventListener('click', function() {
-      toggleThemeClass('theme-dark');
-      saveTheme('theme-dark');
+    d.getElementById('theme-night').addEventListener('click', function() {
+      toggleThemeClass('theme-night');
+      saveTheme('theme-night');
     });
     d.getElementById('theme-mono').addEventListener('click', function() {
       toggleThemeClass('theme-mono');
       saveTheme('theme-mono');
+    });
+    d.getElementById('theme-ocean').addEventListener('click', function() {
+      toggleThemeClass('theme-ocean');
+      saveTheme('theme-ocean');
+    });
+    d.getElementById('theme-divide').addEventListener('click', function() {
+      toggleThemeClass('theme-divide');
+      saveTheme('theme-divide');
+    });
+    d.getElementById('theme-element').addEventListener('click', function() {
+      toggleThemeClass('theme-element');
+      saveTheme('theme-element');
+    });
+    d.getElementById('theme-torchlight').addEventListener('click', function() {
+      toggleThemeClass('theme-torchlight');
+      saveTheme('theme-torchlight');
+    });
+    d.getElementById('theme-azure').addEventListener('click', function() {
+      toggleThemeClass('theme-azure');
+      saveTheme('theme-azure');
+    });
+    d.getElementById('theme-lavender').addEventListener('click', function() {
+      toggleThemeClass('theme-lavender');
+      saveTheme('theme-lavender');
+    });
+    d.getElementById('theme-pink').addEventListener('click', function() {
+      toggleThemeClass('theme-pink');
+      saveTheme('theme-pink');
+    });
+    d.getElementById('theme-warmth').addEventListener('click', function() {
+      toggleThemeClass('theme-warmth');
+      saveTheme('theme-warmth');
+    });
+    d.getElementById('theme-obscure').addEventListener('click', function() {
+      toggleThemeClass('theme-obscure');
+      saveTheme('theme-obscure');
+    });
+    d.getElementById('theme-morninglawn').addEventListener('click', function() {
+      toggleThemeClass('theme-morninglawn');
+      saveTheme('theme-morninglawn');
     });
   }
 

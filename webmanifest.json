@@ -3,8 +3,8 @@
   "short_name": "WeatherFlex",
   "start_url": ".",
   "display": "fullscreen",
-  "background_color": "#FFFFFF",
-  "theme_color": "#7F507B",
+  "background_color": "#F81268",
+  "theme_color": "#F81268",
   "description": "Your Weather, Your Way. A personalised, local, and modular weather application.",
   "icons": [
     {

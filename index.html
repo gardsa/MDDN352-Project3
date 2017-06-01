@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <title>WeatherFlex</title>
 
     <!-- OpenGraph -->
@@ -112,23 +113,73 @@
     <div class="screen theme-container">
       <h3 class="screen-heading">Theme</h3>
       <ul class="list-module">
-        <li id="theme-default">
+        <li id="theme-default" class="selected">
           <span class="theme-name">Default</span>
           <span class="theme-color-one"></span>
           <span class="theme-color-two"></span>
         </li>
-        <li id="theme-light">
-          <span class="theme-name">Light</span>
+        <li id="theme-day">
+          <span class="theme-name">Sunny Day</span>
           <span class="theme-color-one"></span>
           <span class="theme-color-two"></span>
         </li>
-        <li id="theme-dark">
-          <span class="theme-name">Dark</span>
+        <li id="theme-night">
+          <span class="theme-name">Midnight</span>
           <span class="theme-color-one"></span>
           <span class="theme-color-two"></span>
         </li>
         <li id="theme-mono">
           <span class="theme-name">Mono</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-ocean">
+          <span class="theme-name">Ocean</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-divide">
+          <span class="theme-name">Divide</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-element">
+          <span class="theme-name">Element</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-torchlight">
+          <span class="theme-name">Torchlight</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-azure">
+          <span class="theme-name">Azure</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-lavender">
+          <span class="theme-name">Lavender</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-pink">
+          <span class="theme-name">Pretty In Pink</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-warmth">
+          <span class="theme-name">Warmth</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-obscure">
+          <span class="theme-name">Obscure</span>
+          <span class="theme-color-one"></span>
+          <span class="theme-color-two"></span>
+        </li>
+        <li id="theme-morninglawn">
+          <span class="theme-name">Morning Lawn</span>
           <span class="theme-color-one"></span>
           <span class="theme-color-two"></span>
         </li>
@@ -140,8 +191,8 @@
       <h3 class="screen-heading">Locations</h3>
       <ul id="locations-list" class="list-module">
         <li class="search">
-          <input id="location-search" type="search" placeholder="Search location...">
-          <button id="location-search-btn">+</button>
+          <input id="location-search" type="text" placeholder="Search location...">
+          <button id="location-search-btn"><img src="assets/icons/add.svg"></button>
         </li>
         <span id="add-location-anchor"></span>
         <button id="edit-locations-btn">Edit</button>

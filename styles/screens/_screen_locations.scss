@@ -16,6 +16,7 @@
     #location-search {
       flex-basis: 75%;
       padding: 0.875em;
+      box-sizing: border-box;
     }
     #location-search-btn {
       text-align: center;
@@ -23,20 +24,30 @@
       padding: 0.875em 0;
       border: none;
       color: #FFFFFF;
+      img {
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+      }
     }
     .location-name {
-      box-sizing: border-box;
       padding: 0.875em;
       background-color: $default-secondary-color;
       font-size: 1em;
       flex-basis: 100%;
+      box-sizing: border-box;
     }
     .delete-location-btn {
       width: 0px;
       flex-basis: 0;
       text-align: center;
       padding: 0.875em 0;
+      background-color: #EE4035;
       color: #FFFFFF;
+      img {
+        width: 1em;
+        vertical-align: middle;
+      }
     }
     #edit-locations-btn {
       width: 100%;
@@ -57,7 +68,6 @@
     .delete-location-btn {
       display: inline-block;
       flex-basis: 20%;
-      background-color: rgba($default-secondary-color,0.6);
     }
   }
 

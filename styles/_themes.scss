@@ -2,14 +2,54 @@
   @include theme(#03D2AB, #F81268);
 }
 
-.theme-light {
+.theme-day {
   @include theme(#4CB2D4, #88C542);
 }
 
-.theme-dark {
+.theme-night {
   @include theme(#121258, #77A9D7);
 }
 
 .theme-mono {
   @include theme(#363636, #7D7D7D);
+}
+
+.theme-ocean {
+  @include theme(#FD9A28, #268AFF);
+}
+
+.theme-divide {
+  @include theme(#86C036, #FC402C);
+}
+
+.theme-element {
+  @include theme(#FF7251, #44AFFF);
+}
+
+.theme-torchlight {
+  @include theme(#FBC52C, #192466);
+}
+
+.theme-azure {
+  @include theme(#41A7FF, #207720);
+}
+
+.theme-lavender {
+  @include theme(#394694, #9F8BE5);
+}
+
+.theme-pink {
+  @include theme(#EE5C96, #F58DB6);
+}
+
+.theme-warmth {
+  @include theme(#FFC039, #FF5F07);
+}
+
+.theme-obscure {
+  @include theme(#03D1AB, #4E1C81);
+}
+
+.theme-morninglawn {
+  @include theme(#FFC410, #15DAB6);
 }
