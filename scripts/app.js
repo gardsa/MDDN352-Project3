@@ -105,7 +105,7 @@
         locationsRef = db.child('locations');
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', openCageDataGeocodeURL + locationSearchElem + '&key=' + openCageDataAPIKey);
+    xhr.open('GET', corsHeadersURL + openCageDataGeocodeURL + locationSearchElem + '&key=' + openCageDataAPIKey);
     xhr.addEventListener('load', function(event) {
       locationParams = JSON.parse(event.target.response);
       if (locationParams.results[0]) {
@@ -159,7 +159,6 @@
   }
 
   function deleteLocation(elem) {
-    console.log(elem);
     var location,
         parent = elem.parentElement,
         child = elem.firstChild;
