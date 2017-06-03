@@ -172,6 +172,19 @@
     });
   }
 
+  // EDITOR FUNCTIONALITY
+
+  function saveComponents(primary, secondary1, secondary2, secondary3) {
+    var componentsRef = db.child('components');
+
+    componentsRef.push({
+      primary: comp1,
+      secondary1: comp2,
+      secondary2: comp3,
+      secondary3: comp4
+    });
+  }
+
 
   // THEME FUNCTIONALITY
 
@@ -183,9 +196,6 @@
         d.body.classList.remove(themeClass);
         d.getElementById(themeClass).classList.remove('selected');
       }
-      // if (d.getElementById(themeClass).classList.contains('selected')) {
-      //   d.getElementById(themeClass).classList.remove('selected');
-      // }
     }
     d.getElementById(newThemeClass).classList.add('selected');
     d.body.classList.add(newThemeClass);
@@ -326,10 +336,17 @@
         minTemp = Math.round(weatherData.daily.data[0].temperatureMin);
 
     gridElem.innerHTML = '';
+    gridElem.innerHTML = '<div id="temp-container"><div class="current-temp">' + currentTemp + '<sup>&deg;</sup></div><div class="forecast-temp"><div class="high">' + maxTemp + '<sup>&deg;</sup></div><div class="low">' + minTemp + '<sup>&deg;</sup></div></div></div>'
+    setMainComponentDivHeight();
+  }
 
-    gridElem.innerHTML += '<div class="current-temp">' + currentTemp + '<sup>&deg;</sup></div>';
+  function setMainComponentDivHeight() {
+    var containerHeight = d.getElementById('gridMain').clientHeight,
+        tempContainer = d.getElementById('temp-container');
 
-    gridElem.innerHTML += '<div class="forecast-temp"><div class="high">' + maxTemp + '<sup>&deg;</sup></div><div class="low">' + minTemp + '<sup>&deg;</sup></div></div>';
+    console.log(containerHeight);
+    tempContainer.style.height = containerHeight + 'px';
+    console.log(tempContainer.clientHeight);
   }
 
   function renderWind() {
@@ -464,6 +481,11 @@
     getUserLocation();
     checkAuthState();
     setTheme();
+    d.getElementById('user-location-btn').addEventListener('click', function(){
+      getUserLocation();
+      toggleScreenClass('screen-home');
+    });
     d.getElementById('location-search-btn').addEventListener('click', addLocation);
+    window.addEventListener('resize', setMainComponentDivHeight);
   });
 })(document);

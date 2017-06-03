@@ -10,6 +10,8 @@
   border-color: #03D2AB; }
 .theme-default #location-search-btn {
   background-color: #03D2AB; }
+.theme-default #user-location-btn {
+  background-color: #F81268; }
 
 .theme-day .screen-heading {
   color: #4CB2D4; }
@@ -23,6 +25,8 @@
   border-color: #4CB2D4; }
 .theme-day #location-search-btn {
   background-color: #4CB2D4; }
+.theme-day #user-location-btn {
+  background-color: #88C542; }
 
 .theme-night .screen-heading {
   color: #121258; }
@@ -36,6 +40,8 @@
   border-color: #121258; }
 .theme-night #location-search-btn {
   background-color: #121258; }
+.theme-night #user-location-btn {
+  background-color: #77A9D7; }
 
 .theme-mono .screen-heading {
   color: #363636; }
@@ -49,6 +55,8 @@
   border-color: #363636; }
 .theme-mono #location-search-btn {
   background-color: #363636; }
+.theme-mono #user-location-btn {
+  background-color: #7D7D7D; }
 
 .theme-ocean .screen-heading {
   color: #FD9A28; }
@@ -62,6 +70,8 @@
   border-color: #FD9A28; }
 .theme-ocean #location-search-btn {
   background-color: #FD9A28; }
+.theme-ocean #user-location-btn {
+  background-color: #268AFF; }
 
 .theme-divide .screen-heading {
   color: #86C036; }
@@ -75,6 +85,8 @@
   border-color: #86C036; }
 .theme-divide #location-search-btn {
   background-color: #86C036; }
+.theme-divide #user-location-btn {
+  background-color: #FC402C; }
 
 .theme-element .screen-heading {
   color: #FF7251; }
@@ -88,6 +100,8 @@
   border-color: #FF7251; }
 .theme-element #location-search-btn {
   background-color: #FF7251; }
+.theme-element #user-location-btn {
+  background-color: #44AFFF; }
 
 .theme-torchlight .screen-heading {
   color: #FBC52C; }
@@ -101,6 +115,8 @@
   border-color: #FBC52C; }
 .theme-torchlight #location-search-btn {
   background-color: #FBC52C; }
+.theme-torchlight #user-location-btn {
+  background-color: #192466; }
 
 .theme-azure .screen-heading {
   color: #41A7FF; }
@@ -114,6 +130,8 @@
   border-color: #41A7FF; }
 .theme-azure #location-search-btn {
   background-color: #41A7FF; }
+.theme-azure #user-location-btn {
+  background-color: #207720; }
 
 .theme-lavender .screen-heading {
   color: #394694; }
@@ -127,6 +145,8 @@
   border-color: #394694; }
 .theme-lavender #location-search-btn {
   background-color: #394694; }
+.theme-lavender #user-location-btn {
+  background-color: #9F8BE5; }
 
 .theme-pink .screen-heading {
   color: #EE5C96; }
@@ -140,6 +160,8 @@
   border-color: #EE5C96; }
 .theme-pink #location-search-btn {
   background-color: #EE5C96; }
+.theme-pink #user-location-btn {
+  background-color: #F58DB6; }
 
 .theme-warmth .screen-heading {
   color: #FFC039; }
@@ -153,6 +175,8 @@
   border-color: #FFC039; }
 .theme-warmth #location-search-btn {
   background-color: #FFC039; }
+.theme-warmth #user-location-btn {
+  background-color: #FF5F07; }
 
 .theme-obscure .screen-heading {
   color: #03D1AB; }
@@ -166,6 +190,8 @@
   border-color: #03D1AB; }
 .theme-obscure #location-search-btn {
   background-color: #03D1AB; }
+.theme-obscure #user-location-btn {
+  background-color: #4E1C81; }
 
 .theme-morninglawn .screen-heading {
   color: #FFC410; }
@@ -179,6 +205,8 @@
   border-color: #FFC410; }
 .theme-morninglawn #location-search-btn {
   background-color: #FFC410; }
+.theme-morninglawn #user-location-btn {
+  background-color: #15DAB6; }
 
 body {
   position: absolute;
@@ -367,21 +395,21 @@ input, button {
   -webkit-transition: -webkit-transform 0.2s;
   transition: transform 0.2s; }
 
-.current-temp {
-  display: inline-block;
-  padding: 30px 0 30px 30px;
-  font-size: 6.25em; }
+#temp-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center; }
+  #temp-container .current-temp {
+    text-align: right;
+    font-size: 6.25em; }
+  #temp-container .forecast-temp {
+    text-align: left;
+    font-size: 2.5em; }
 
 sup {
   font-size: 60%;
   vertical-align: super; }
-
-.forecast-temp {
-  display: inline-block;
-  padding: 40px 30px 40px 0;
-  float: right;
-  text-align: right;
-  font-size: 2.5em; }
 
 .current-wind, .current-cloud, #cloud-canvas, .current-precip {
   position: absolute;
