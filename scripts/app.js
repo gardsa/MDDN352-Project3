@@ -31,7 +31,6 @@
     // Sign in
     var promise = auth.signInWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
-    // promise.then(setupUser);
   }
 
   function signupHandler() {
@@ -43,7 +42,6 @@
     // Sign up
     var promise = auth.createUserWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
-    promise.then(writeUserData);
   }
 
   function logoutHandler() {
@@ -97,7 +95,9 @@
     themesRef = db.child('themes');
     if (themesRef) {
       themesRef.once('value').then(function(snapshot) {
-        toggleThemeClass(snapshot.val().theme);
+        if (snapshot.val()) {
+          toggleThemeClass(snapshot.val().theme);
+        }
       });
     }
   }
@@ -149,7 +149,6 @@
 
     node.innerHTML = '<span class="location-name" id="' + snapshot.val().name + '">' + snapshot.val().name + '</span>' + '<span class="delete-location-btn" id="delete-' + snapshot.val().name + '"><img src="assets/icons/remove.svg"></span>';
     node.classList.add('location');
-    // node.id = snapshot.val().name;
     parentNode.insertBefore(node, refNode);
 
     d.getElementById('delete-' + snapshot.val().name).addEventListener('click', function() {
@@ -309,7 +308,6 @@
 
     var xhr2 = new XMLHttpRequest();
     xhr2.open('GET', corsHeadersURL + owmBaseURL + "weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=" + owmAPIKey);
-    // xhr2.open('GET', owmBaseURL + "weather?lat=" + lat + "&lon=" + lng + "&units=metric&APPID=" + owmAPIKey);
     xhr2.addEventListener('load', function(event) {
       owmWeatherData = JSON.parse(event.target.response);
       renderLocation();
@@ -421,7 +419,6 @@
     } else {
       gridElem.innerHTML += '<div class="current-precip"><div class="intensity">0</div><div class="units">mm</div></div><img id="precip-icon" src="assets/rain-icon.svg">';
     }
-
   }
 
 
