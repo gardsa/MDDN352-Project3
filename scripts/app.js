@@ -52,7 +52,11 @@
   }
 
   function clearUserInfo() {
-    // TODO: get rid of all locations rendered
+    // Remove all locations rendered on signout
+    var locElems = d.querySelectorAll('.location');
+    for (const locElem of locElems) {
+      locElem.parentNode.removeChild(locElem);
+    }
   }
 
   btnLogin.addEventListener('click', loginHandler);
@@ -343,10 +347,7 @@
   function setMainComponentDivHeight() {
     var containerHeight = d.getElementById('gridMain').clientHeight,
         tempContainer = d.getElementById('temp-container');
-
-    console.log(containerHeight);
     tempContainer.style.height = containerHeight + 'px';
-    console.log(tempContainer.clientHeight);
   }
 
   function renderWind() {
