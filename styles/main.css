@@ -357,43 +357,7 @@ header, .header-container {
 
 
 
-/*.grid-item {
 
-  width: calc((100% / 3) - 4.5%);
-  height: 0;
-  padding-bottom: calc((100% / 3) - 4.5%);
-  float: left;
-  background-color: #3ACCB0;
-  border-radius: 5px;
-  text-align: center;
-
-}
-
-
-.grid-item:hover{
-
-  width: calc((100% / 1) - 4.5%);
-  height: 0;
-  padding-bottom: calc((100% / 3) - 4.5%);
-  float: left;
-  background-color: #3ACCB0;
-  border-radius: 5px;
-  text-align: center;
-  transition: all 1s ease;
-}
-
-  .grid-item:hover {
-  width: calc((100% / 3) - 4.5%);
-  height: 0;
-  padding-bottom: calc((100% / 1) - 10%);
-  float: left;
-  background-color: #0045FD;
-  border-radius: 5px;
-  text-align: center;
-  z-index: 1;
-  -webkit-animation: scale 1s ease infinite;
-
-}*/
 
 .grid-item {
   width: calc((100% / 3) - 4.5%);
@@ -404,21 +368,6 @@ header, .header-container {
   border-radius: 5px;
   text-align: center;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .grid-item-width3 {

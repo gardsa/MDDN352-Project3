@@ -28,14 +28,6 @@ messaging.onMessage(function(payload) {
 */
 
 
-// click funcction tiles
-
-
-
-
-
-
-
 
 //DJ3S COMMAND
 
@@ -54,6 +46,8 @@ $.ajax({
 
 
   });
+
+
 
 
 
