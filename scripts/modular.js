@@ -9,7 +9,9 @@ function initModules() {
 
   var itemElem = '.grid-item';
   pckry.getItemElements().forEach(function(itemElem) {
-    var draggie = new Draggabilly(itemElem);
+    var draggie = new Draggabilly(itemElem, {
+      handle: '.handle'
+    });
     pckry.bindDraggabillyEvents(draggie);
   });
 }

@@ -57,3 +57,14 @@
   -webkit-transition: -webkit-transform 0.2s;
           transition: transform 0.2s;
 }
+
+.handle {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #FFF;
+  z-index: 1;
+  border-radius: 0.25em;
+}

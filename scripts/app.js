@@ -338,8 +338,14 @@
         minTemp = Math.round(weatherData.daily.data[0].temperatureMin);
 
     gridElem.innerHTML = '';
-    gridElem.innerHTML = '<div id="temp-container"><div class="current-temp">' + currentTemp + '<sup>&deg;</sup></div><div class="forecast-temp"><div class="high">' + maxTemp + '<sup>&deg;</sup></div><div class="low">' + minTemp + '<sup>&deg;</sup></div></div></div>'
+    gridElem.innerHTML += '<div id="temp-container"><div class="current-temp">' + currentTemp + '<sup>&deg;</sup></div><div class="forecast-temp"><div class="high">' + maxTemp + '<sup>&deg;</sup></div><div class="low">' + minTemp + '<sup>&deg;</sup></div></div></div>'
     setMainComponentDivHeight();
+
+    // resizing grid element
+    var parent = gridElem.parentElement;
+    $(parent).resizable({
+      containment: "parent"
+    });
   }
 
   function setMainComponentDivHeight() {
@@ -371,7 +377,8 @@
   	}
 
     // resizing grid element
-    $(gridElem).resizable({
+    var parent = gridElem.parentElement;
+    $(parent).resizable({
       containment: "parent"
     });
   }
@@ -402,7 +409,8 @@
     }
 
     // resizing grid element
-    $(gridElem).resizable({
+    var parent = gridElem.parentElement;
+    $(parent).resizable({
       containment: "parent"
     });
   }
@@ -431,7 +439,8 @@
     }
 
     // resizing grid element
-    $(gridElem).resizable({
+    var parent = gridElem.parentElement;
+    $(parent).resizable({
       containment: "parent"
     });
   }

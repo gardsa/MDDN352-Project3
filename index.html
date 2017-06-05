@@ -43,9 +43,6 @@
     <!-- d3 -->
     <script src="scripts/d3.min.js"></script>
 
-    <!-- Custom scripts -->
-    <script src="scripts/modular.js"></script>
-
     <!-- Modular grid minified scripts -->
     <script src="scripts/packery.pkgd.min.js"></script>
     <script src="scripts/draggabilly.pkgd.min.js"></script>
@@ -235,10 +232,22 @@
           <div class="grid">
             <div class="grid-sizer"></div>
             <div class="gutter-sizer"></div>
-            <div id="gridMain" class="grid-item grid-item-width3"></div>
-            <div id="grid1" class="grid-item"></div>
-            <div id="grid2" class="grid-item"></div>
-            <div id="grid3" class="grid-item"></div>
+            <div class="grid-item grid-item-width3">
+              <div class="handle"></div>
+              <div id="gridMain"></div>
+            </div>
+            <div class="grid-item">
+              <div class="handle"></div>
+              <div id="grid1"></div>
+            </div>
+            <div class="grid-item">
+              <div class="handle"></div>
+              <div id="grid2"></div>
+            </div>
+            <div class="grid-item">
+              <div class="handle"></div>
+              <div id="grid3"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -247,4 +256,5 @@
     <!-- Scripts to be loaded once all content has loaded -->
     <!-- <script src="scripts/events.js"></script> -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/modular.js"></script>
   </body>
