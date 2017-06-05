@@ -17,6 +17,7 @@
       flex-basis: 75%;
       padding: 0.875em;
       box-sizing: border-box;
+      color: $default-secondary-color;
     }
     #location-search-btn {
       text-align: center;
@@ -44,6 +45,7 @@
       padding: 0.875em 0;
       background-color: #EE4035;
       color: #FFFFFF;
+      display: none;
       img {
         width: 1em;
         vertical-align: middle;
