@@ -23,13 +23,15 @@ function enableResize() {
       minWidth;
   for (const gridItem of gridItems) {
     minWidth = gridItem.offsetWidth;
-    $(gridItem).resizable({
-      containment: 'parent',
-      minWidth: minWidth,
-      resize: function() {
-        pckry.shiftLayout();
-      }
-    });
+    if (!gridItem.classList.contains('grid-item-width3')){
+      $(gridItem).resizable({
+        containment: 'parent',
+        minWidth: minWidth,
+        resize: function() {
+          pckry.layout();
+        }
+      });
+    }
   }
 }
 document.addEventListener('DOMContentLoaded', function(){

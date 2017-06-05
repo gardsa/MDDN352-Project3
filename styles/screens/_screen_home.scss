@@ -1,7 +1,10 @@
 .home-container {
+  display: flex;
+  align-items: center;
   .content {
+    width: 100%;
     .location-info {
-      margin: 1.875em 0;
+      margin: 1.5em 0;
       line-height: 1;
       text-align: center;
       text-transform: uppercase;

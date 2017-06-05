@@ -32,6 +32,16 @@
   float: left;
   border-radius: 0.5em;
   text-align: center;
+
+  .ui-icon, .ui-widget-content .ui-icon {
+    background-image: url('assets/icons/resize.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5;
+  }
+  .ui-resizable-se {
+    padding: 0 4px 4px 0;
+  }
 }
 
 .grid-item-width3 {
@@ -60,12 +70,13 @@
 }
 
 .handle {
-  width: 15px;
-  height: 15px;
+  width: 1em;
+  height: 1em;
   position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: #FFF;
+  top: 0.3125em;
+  right: 0.3125em;
+  background-image: url('assets/icons/move.svg');
+  background-repeat: no-repeat;
   z-index: 1;
-  border-radius: 0.25em;
+  opacity: 0.5;
 }
