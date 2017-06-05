@@ -369,6 +369,11 @@
   	} else {
   		directionElem.style.transform = "rotate("+degrees+"deg)";
   	}
+
+    // resizing grid element
+    $(gridElem).resizable({
+      containment: "parent"
+    });
   }
 
   function renderCloud() {
@@ -395,6 +400,11 @@
       ctx.lineTo(c.width/2, c.height/2);
       ctx.fill();
     }
+
+    // resizing grid element
+    $(gridElem).resizable({
+      containment: "parent"
+    });
   }
 
   function renderPrecip() {
@@ -419,6 +429,11 @@
     } else {
       gridElem.innerHTML += '<div class="current-precip"><div class="intensity">0</div><div class="units">mm</div></div><img id="precip-icon" src="assets/rain-icon.svg">';
     }
+
+    // resizing grid element
+    $(gridElem).resizable({
+      containment: "parent"
+    });
   }
 
 
