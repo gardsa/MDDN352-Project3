@@ -399,12 +399,11 @@ input, button {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
-  align-items: center; }
+  align-items: center;
+  text-align: right; }
   #temp-container .current-temp {
-    text-align: right;
     font-size: 6.25em; }
   #temp-container .forecast-temp {
-    text-align: left;
     font-size: 2.5em; }
 
 sup {

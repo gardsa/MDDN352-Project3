@@ -3,13 +3,12 @@
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
+  text-align: right;
 
   .current-temp {
-    text-align: right;
     font-size: 6.25em;
   }
   .forecast-temp {
-    text-align: left;
     font-size: 2.5em;
   }
 }
