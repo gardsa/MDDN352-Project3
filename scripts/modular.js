@@ -1,5 +1,7 @@
+var pckry;
+
 function initModules() {
-  var pckry = new Packery('.grid', {
+  pckry = new Packery('.grid', {
     itemSelector: '.grid-item',
     gutter: '.gutter-sizer',
     columnWidth: '.grid-sizer',
@@ -16,6 +18,21 @@ function initModules() {
   });
 }
 
+function enableResize() {
+  var gridItems = document.querySelectorAll('.grid-item'),
+      minWidth;
+  for (const gridItem of gridItems) {
+    minWidth = gridItem.offsetWidth;
+    $(gridItem).resizable({
+      containment: 'parent',
+      minWidth: minWidth,
+      resize: function() {
+        pckry.shiftLayout();
+      }
+    });
+  }
+}
 document.addEventListener('DOMContentLoaded', function(){
   initModules();
+  enableResize();
 });

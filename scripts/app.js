@@ -332,7 +332,7 @@
   }
 
   function renderTemp() {
-    var gridElem = d.getElementById('gridMain'),
+    var gridElem = d.getElementById('gridMainContent'),
         currentTemp = Math.round(weatherData.currently.temperature),
         maxTemp = Math.round(weatherData.daily.data[0].temperatureMax),
         minTemp = Math.round(weatherData.daily.data[0].temperatureMin);
@@ -340,22 +340,19 @@
     gridElem.innerHTML = '';
     gridElem.innerHTML += '<div id="temp-container"><div class="current-temp">' + currentTemp + '<sup>&deg;</sup></div><div class="forecast-temp"><div class="high">' + maxTemp + '<sup>&deg;</sup></div><div class="low">' + minTemp + '<sup>&deg;</sup></div></div></div>'
     setMainComponentDivHeight();
-
-    // resizing grid element
-    var parent = gridElem.parentElement;
-    $(parent).resizable({
-      containment: "parent"
-    });
   }
 
   function setMainComponentDivHeight() {
     var containerHeight = d.getElementById('gridMain').clientHeight,
+        contentContainer = d.getElementById('gridMainContent'),
         tempContainer = d.getElementById('temp-container');
+
+    contentContainer.style.height = containerHeight + 'px';
     tempContainer.style.height = containerHeight + 'px';
   }
 
   function renderWind() {
-    var gridElem = d.getElementById('grid1'),
+    var gridElem = d.getElementById('grid1Content'),
         speed = Math.round(weatherData.currently.windSpeed * 3.6),
         degrees = weatherData.currently.windBearing;
 
@@ -375,16 +372,10 @@
   	} else {
   		directionElem.style.transform = "rotate("+degrees+"deg)";
   	}
-
-    // resizing grid element
-    var parent = gridElem.parentElement;
-    $(parent).resizable({
-      containment: "parent"
-    });
   }
 
   function renderCloud() {
-    var gridElem = d.getElementById('grid2'),
+    var gridElem = d.getElementById('grid2Content'),
         cloudCover = weatherData.currently.cloudCover;
 
     gridElem.innerHTML = '';
@@ -407,16 +398,10 @@
       ctx.lineTo(c.width/2, c.height/2);
       ctx.fill();
     }
-
-    // resizing grid element
-    var parent = gridElem.parentElement;
-    $(parent).resizable({
-      containment: "parent"
-    });
   }
 
   function renderPrecip() {
-    var gridElem = d.getElementById('grid3'),
+    var gridElem = d.getElementById('grid3Content'),
         precipIntensity = Math.round(weatherData.hourly.data[0].precipIntensity*10) / 10;
 
     gridElem.innerHTML = '';
@@ -437,12 +422,6 @@
     } else {
       gridElem.innerHTML += '<div class="current-precip"><div class="intensity">0</div><div class="units">mm</div></div><img id="precip-icon" src="assets/rain-icon.svg">';
     }
-
-    // resizing grid element
-    var parent = gridElem.parentElement;
-    $(parent).resizable({
-      containment: "parent"
-    });
   }
 
 

@@ -369,6 +369,7 @@ input, button {
 .grid-item {
   width: calc((100% / 3) - 4.5%);
   height: 0;
+  max-height: 0;
   padding-bottom: calc((100% / 3) - 4.5%);
   float: left;
   border-radius: 0.5em;
@@ -396,8 +397,8 @@ input, button {
   transition: transform 0.2s; }
 
 .handle {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   position: absolute;
   top: 5px;
   right: 5px;
