@@ -1,5 +1,5 @@
-// Initialize Firebase
-  var config = {
+// Initialize Firebase cloud messaging
+/*  var config = {
     apiKey: "AIzaSyBNTKQti3lzzJB2cWoo7oMR6rUJWw7J558",
     authDomain: "mddn-352-project-3.firebaseapp.com",
     databaseURL: "https://mddn-352-project-3.firebaseio.com",
@@ -25,7 +25,35 @@
 messaging.onMessage(function(payload) {
   console.log('onMessage: ', payload);
 });
+*/
 
+
+// click funcction tiles
+
+
+
+
+
+
+
+
+//DJ3S COMMAND
+
+// create the variables
+var n, m;
+
+$.ajax({
+  url: "https://api.darksky.net/forecast/194c5b87f15d5741116fe1d0f0723c60/37.8267,-122.4233",
+})
+  .done(function( data ) {
+    console.log(data);
+    n = data.currently.temperature;
+    console.log('currentt temp is now: ', n);
+    m = data.currently.windSpeed;
+    console.log('currentt windspeed is now: ', m);
+
+
+  });
 
 
 
@@ -67,4 +95,8 @@ messaging.onMessage(function(payload) {
   d.getElementById('close-location-error-mask').addEventListener('click', function(){
     d.body.classList.remove('location-error');
   });
+
+
+
+
 })(document);

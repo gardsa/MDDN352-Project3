@@ -70,6 +70,8 @@
     gridElem.innerHTML += '<div class="current-temp">' + currentTemp + '<sup>&deg;</sup></div>';
 
     gridElem.innerHTML += '<div class="forecast-temp"><div class="high">' + maxTemp + '<sup>&deg;</sup></div><div class="low">' + minTemp + '<sup>&deg;</sup></div></div>';
+    //$(gridElem).resizable();
+
   }
 
   function renderWind() {
@@ -93,6 +95,10 @@
   	} else {
   		directionElem.style.transform = "rotate("+degrees+"deg)";
   	}
+      $(gridElem).resizable({
+        containment: "parent"
+});
+
   }
 
   function renderCloud() {
@@ -119,6 +125,7 @@
       ctx.lineTo(c.width/2, c.height/2);
       ctx.fill();
     }
+      //$(gridElem).resizable();
   }
 
   function renderPrecip() {
@@ -143,6 +150,7 @@
     } else {
       gridElem.innerHTML += '<div class="current-precip"><div class="intensity">0</div><div class="units">mm</div></div><img id="precip-icon" src="assets/rain-icon.svg">';
     }
+    //  $(gridElem).resizable();
 
   }
 

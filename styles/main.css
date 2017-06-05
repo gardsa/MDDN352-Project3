@@ -357,9 +357,22 @@ header, .header-container {
 
 
 
-.grid-item {
+/*.grid-item {
 
   width: calc((100% / 3) - 4.5%);
+  height: 0;
+  padding-bottom: calc((100% / 3) - 4.5%);
+  float: left;
+  background-color: #3ACCB0;
+  border-radius: 5px;
+  text-align: center;
+
+}
+
+
+.grid-item:hover{
+
+  width: calc((100% / 1) - 4.5%);
   height: 0;
   padding-bottom: calc((100% / 3) - 4.5%);
   float: left;
@@ -369,8 +382,7 @@ header, .header-container {
   transition: all 1s ease;
 }
 
-
-.grid-item:hover {
+  .grid-item:hover {
   width: calc((100% / 3) - 4.5%);
   height: 0;
   padding-bottom: calc((100% / 1) - 10%);
@@ -381,7 +393,30 @@ header, .header-container {
   z-index: 1;
   -webkit-animation: scale 1s ease infinite;
 
+}*/
+
+.grid-item {
+  width: calc((100% / 3) - 4.5%);
+  height: 0;
+  padding-bottom: calc((100% / 3) - 4.5%);
+  float: left;
+  background-color: #3ACCB0;
+  border-radius: 5px;
+  text-align: center;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
