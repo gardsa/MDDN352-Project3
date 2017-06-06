@@ -75,12 +75,18 @@
         d.body.classList.add('logged-in');
         db  = firebase.database().ref('users/' + user.uid);
         setupUser();
+        getUserLocation();
       } else {
         d.body.classList.remove('logged-in');
         console.log('not logged in');
       }
     });
   }
+
+  var primary,
+      secondary1,
+      secondary2,
+      secondary3;
 
   function setupUser() {
     // SET UP LOCATIONS SCREEN
@@ -100,6 +106,28 @@
         if (snapshot.val()) {
           toggleThemeClass(snapshot.val().theme);
         }
+      });
+    }
+
+    componentsRef = db.child('components');
+    if (componentsRef) {
+      componentsRef.once('value').then(function(snapshot) {
+        if (snapshot.val() == null) {
+          componentsRef.set({
+            primary: 'temp',
+            secondary1: 'wind',
+            secondary2: 'cloud',
+            secondary3: 'rain'
+          });
+        } else {
+          primary = snapshot.val().primary;
+          secondary1 = snapshot.val().secondary1;
+          secondary2 = snapshot.val().secondary2;
+          secondary3  = snapshot.val().secondary3;
+        }
+      });
+      componentsRef.once('value').then(function(snapshot) {
+        setSelectedComponents(snapshot.val().primary, snapshot.val().secondary1, snapshot.val().secondary2, snapshot.val().secondary3);
       });
     }
   }
@@ -174,48 +202,6 @@
           parent.removeChild(elem);
         }
       });
-    });
-  }
-
-  // EDITOR FUNCTIONALITY
-
-  function setComponents() {
-    var primary = 'temp',
-        secondary1 = 'wind',
-        secondary2 = 'cloud',
-        secondary3 = 'rain';
-
-    d.getElementById('primary-select').addEventListener('change', function() {
-      primary = event.target.value;
-      saveComponents(primary, secondary1, secondary2, secondary3);
-    });
-    d.getElementById('secondary1-select').addEventListener('change', function() {
-      secondary1 = event.target.value;
-      saveComponents(primary, secondary1, secondary2, secondary3);
-    });
-    d.getElementById('secondary2-select').addEventListener('change', function() {
-      secondary2 = event.target.value;
-      saveComponents(primary, secondary1, secondary2, secondary3);
-    });
-    d.getElementById('secondary3-select').addEventListener('change', function() {
-      secondary3 = event.target.value;
-      saveComponents(primary, secondary1, secondary2, secondary3);
-    });
-
-  }
-
-  function saveComponents(primary, secondary1, secondary2, secondary3) {
-    componentsRef = db.child('components');
-
-    componentsRef.set({
-      primary: primary,
-      secondary1: secondary1,
-      secondary2: secondary2,
-      secondary3: secondary3
-    });
-
-    componentsRef.once('value').then(function(snapshot) {
-      renderGridModules(snapshot.val());
     });
   }
 
@@ -298,6 +284,52 @@
     db.child('themes').set({
       theme: theme
     });
+  }
+
+
+  // EDITOR FUNCTIONALITY
+
+  function setComponents() {
+    d.getElementById('primary-select').addEventListener('change', function() {
+      primary = event.target.value;
+      saveComponents(primary, secondary1, secondary2, secondary3);
+    });
+    d.getElementById('secondary1-select').addEventListener('change', function() {
+      secondary1 = event.target.value;
+      saveComponents(primary, secondary1, secondary2, secondary3);
+    });
+    d.getElementById('secondary2-select').addEventListener('change', function() {
+      secondary2 = event.target.value;
+      saveComponents(primary, secondary1, secondary2, secondary3);
+    });
+    d.getElementById('secondary3-select').addEventListener('change', function() {
+      secondary3 = event.target.value;
+      saveComponents(primary, secondary1, secondary2, secondary3);
+    });
+  }
+
+  function saveComponents(primary, secondary1, secondary2, secondary3) {
+    componentsRef = db.child('components');
+
+    componentsRef.set({
+      primary: primary,
+      secondary1: secondary1,
+      secondary2: secondary2,
+      secondary3: secondary3
+    });
+
+    componentsRef.once('value').then(function(snapshot) {
+      renderGridModules(snapshot.val());
+    });
+
+    setSelectedComponents(primary, secondary1, secondary2, secondary3);
+  }
+
+  function setSelectedComponents(primary, secondary1, secondary2, secondary3) {
+    d.getElementById('primary-select').querySelector('option[value="' + primary + '"]').selected = true;
+    d.getElementById('secondary1-select').querySelector('option[value="' + secondary1 + '"]').selected = true;
+    d.getElementById('secondary2-select').querySelector('option[value="' + secondary2 + '"]').selected = true;
+    d.getElementById('secondary3-select').querySelector('option[value="' + secondary3 + '"]').selected = true;
   }
 
 
@@ -578,7 +610,6 @@
   });
 
   d.addEventListener('DOMContentLoaded', function(){
-    getUserLocation();
     checkAuthState();
     setTheme();
     setComponents();
