@@ -321,8 +321,10 @@
     descriptionElem.innerHTML += weatherData.currently.summary;
     renderTemp();
     renderWind();
-    renderCloud();
-    renderPrecip();
+    // renderCloud();
+    renderHumidity();
+    // renderPrecip();
+    renderPressure();
   }
 
   function renderLocation() {
@@ -379,26 +381,21 @@
         cloudCover = weatherData.currently.cloudCover;
 
     gridElem.innerHTML = '';
-
-    gridElem.innerHTML += '<img id="cloud-circle" src="assets/circle-icon.svg">'
+    gridElem.innerHTML += '<img id="cloud-outline" src="assets/icons/cloud-outline.svg">';
 
     if (cloudCover == 0){
-      gridElem.innerHTML += '<div class="current-cloud">clear</div>'
-    }
-    else {
-      gridElem.innerHTML += '<div class="canvas-container"><canvas id="cloud-canvas" width="100" height="100"></canvas></div>';
+      gridElem.innerHTML += '<div class="current-cloud">clear</div>';
+    } else {
+      gridElem.innerHTML += '<img id="cloud-icon" src="assets/icons/cloud-icon.svg">';
+      var cloud = d.getElementById('cloud-icon'),
+          cloudWidth = cloud.offsetWidth,
+          cloudHeight = cloud.offsetHeight,
+          clippingHeight = cloudHeight * (1 - cloudCover);
 
-      var c = d.getElementById("cloud-canvas"),
-      ctx = c.getContext("2d");
-
-      ctx.fillStyle = 'white';
-      ctx.beginPath();
-      ctx.moveTo(c.width/2, c.height/2);
-      ctx.arc(c.width/2, c.height/2, c.height/2, 0, (Math.PI*2*(cloudCover)), false);
-      ctx.lineTo(c.width/2, c.height/2);
-      ctx.fill();
+      cloud.style.clip = 'rect(' + clippingHeight + 'px,' + cloudWidth + 'px,' + cloudHeight + 'px,0px)';
     }
   }
+
 
   function renderPrecip() {
     var gridElem = d.getElementById('grid3Content'),
@@ -424,6 +421,44 @@
     }
   }
 
+  function renderHumidity() {
+    var gridElem = d.getElementById('grid2Content'),
+        humidity = weatherData.currently.humidity * 100;
+
+    gridElem.innerHTML = '';
+
+    gridElem.innerHTML += '<div class="current-humidity"><div class="humidity-value">' + humidity + '</div><span class="percent">%</span></div><img id="humidity-icon" src="assets/icons/humidity-icon.svg">';
+  }
+
+  function renderPressure() {
+    var gridElem = d.getElementById('grid3Content'),
+        pressure = Math.round(weatherData.currently.pressure);
+
+    gridElem.innerHTML = '';
+
+    gridElem.innerHTML += '<div class="current-pressure"><div class="pressure">' + pressure + '</div><div class="units">hPa</div></div><img id="pressure-outline" src="assets/icons/pressure-outline.svg"><img id="pressure-pointer" src="assets/icons/pressure-pointer.svg">';
+
+    var pointerElem = d.getElementById('pressure-pointer'),
+        rotateVal;
+
+    if (pressure <= 1000){
+      rotateVal = 337.5;
+    } else if (pressure >= 1030) {
+      rotateVal = 22.5;
+    }
+
+    if(navigator.userAgent.match("Chrome")){
+  		pointerElem.style.WebkitTransform = "rotate("+rotateVal+"deg)";
+  	} else if(navigator.userAgent.match("Firefox")){
+  		pointerElem.style.MozTransform = "rotate("+rotateVal+"deg)";
+  	} else if(navigator.userAgent.match("MSIE")){
+  		pointerElem.style.msTransform = "rotate("+rotateVal+"deg)";
+  	} else if(navigator.userAgent.match("Opera")){
+  		pointerElem.style.OTransform = "rotate("+rotateVal+"deg)";
+  	} else {
+  		pointerElem.style.transform = "rotate("+rotateVal+"deg)";
+  	}
+  }
 
   // EVENTS
 

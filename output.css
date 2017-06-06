@@ -485,23 +485,33 @@ sup {
   font-size: 60%;
   vertical-align: super; }
 
-.current-wind, .current-cloud, #cloud-canvas, .current-precip {
+.current-wind, .current-cloud, .current-precip, .current-humidity, .current-pressure {
   position: absolute;
   margin: 0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); }
 
+.current-cloud, .percent {
+  font-size: 0.75em; }
+
 .current-precip .intensity {
   letter-spacing: normal; }
 
-.speed, .intensity {
+.speed, .intensity, .humidity-value {
   font-size: 1.75em; }
+
+.pressure {
+  margin-top: 1em;
+  font-size: 1.25em; }
+
+.humidity-value {
+  display: inline; }
 
 .units {
   font-size: 0.4375em; }
 
-#direction-icon, #cloud-circle, .canvas-container, #precip-icon {
+#direction-icon, #cloud-outline, #cloud-icon, #precip-icon, #humidity-icon, #pressure-outline, #pressure-pointer {
   position: absolute;
   top: 0;
   right: 0;
@@ -511,7 +521,7 @@ sup {
   height: 90%;
   margin: auto; }
 
-#cloud-canvas {
+#humidity-icon, #pressure-outline, #pressure-pointer {
   width: 78%;
   height: 78%; }
 
