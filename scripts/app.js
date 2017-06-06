@@ -102,13 +102,6 @@
         }
       });
     }
-
-    componentsRef = db.child('components');
-    if (componentsRef) {
-      componentsRef.once('value').then(function(snapshot) {
-        // snapshot.forEach();
-      });
-    }
   }
 
   // SAVED LOCATIONS FUNCTIONALITY
@@ -198,12 +191,15 @@
     });
     d.getElementById('secondary1-select').addEventListener('change', function() {
       secondary1 = event.target.value;
+      saveComponents(primary, secondary1, secondary2, secondary3);
     });
     d.getElementById('secondary2-select').addEventListener('change', function() {
       secondary2 = event.target.value;
+      saveComponents(primary, secondary1, secondary2, secondary3);
     });
     d.getElementById('secondary3-select').addEventListener('change', function() {
       secondary3 = event.target.value;
+      saveComponents(primary, secondary1, secondary2, secondary3);
     });
 
   }
@@ -216,6 +212,10 @@
       secondary1: secondary1,
       secondary2: secondary2,
       secondary3: secondary3
+    });
+
+    componentsRef.once('value').then(function(snapshot) {
+      renderGridModules(snapshot.val());
     });
   }
 
@@ -346,27 +346,65 @@
     xhr2.send();
   }
 
-  function renderWeatherInfo(){
-    var descriptionElem = d.getElementById('description');
-    descriptionElem.innerHTML = '';
-    descriptionElem.innerHTML += weatherData.currently.summary;
-    renderTemp();
-    renderWind();
-    // renderCloud();
-    renderHumidity();
-    // renderPrecip();
-    renderPressure();
-  }
-
   function renderLocation() {
     var locationElem =  d.getElementById('location');
     locationElem.innerHTML = '';
     locationElem.innerHTML += owmWeatherData.name;
   }
 
-  function renderTemp() {
-    var gridElem = d.getElementById('gridMainContent'),
-        currentTemp = Math.round(weatherData.currently.temperature),
+  function renderWeatherInfo(){
+    var descriptionElem = d.getElementById('description');
+    descriptionElem.innerHTML = '';
+    descriptionElem.innerHTML += weatherData.currently.summary;
+    componentsRef = db.child('components');
+    if (componentsRef) {
+      componentsRef.once('value').then(function(snapshot) {
+        renderGridModules(snapshot.val());
+      });
+    }
+  }
+
+  function renderGridModules(components) {
+    var primaryModule = d.getElementById('gridMainContent'),
+        secondary1Module = d.getElementById('grid1Content'),
+        secondary2Module = d.getElementById('grid2Content'),
+        secondary3Module = d.getElementById('grid3Content'),
+        primaryComponent = components.primary,
+        secondary1Component = components.secondary1,
+        secondary2Component = components.secondary2,
+        secondary3Component = components.secondary3;
+
+    if (primaryComponent == 'temp'){renderTemp(primaryModule);}
+    else if (primaryComponent == 'rain'){renderPrecip(primaryModule);}
+    else if (primaryComponent == 'wind'){renderWind(primaryModule);}
+    else if (primaryComponent == 'cloud'){renderCloud(primaryModule);}
+    else if (primaryComponent == 'humidity'){renderHumidity(primaryModule);}
+    else if (primaryComponent == 'pressure'){renderPressure(primaryModule);}
+
+    if (secondary1Component == 'temp'){renderTemp(secondary1Module);}
+    else if (secondary1Component == 'rain'){renderPrecip(secondary1Module);}
+    else if (secondary1Component == 'wind'){renderWind(secondary1Module);}
+    else if (secondary1Component == 'cloud'){renderCloud(secondary1Module);}
+    else if (secondary1Component == 'humidity'){renderHumidity(secondary1Module);}
+    else if (secondary1Component == 'pressure'){renderPressure(secondary1Module);}
+
+    if (secondary2Component == 'temp'){renderTemp(secondary2Module);}
+    else if (secondary2Component == 'rain'){renderPrecip(secondary2Module);}
+    else if (secondary2Component == 'wind'){renderWind(secondary2Module);}
+    else if (secondary2Component == 'cloud'){renderCloud(secondary2Module);}
+    else if (secondary2Component == 'humidity'){renderHumidity(secondary2Module);}
+    else if (secondary2Component == 'pressure'){renderPressure(secondary2Module);}
+
+    if (secondary3Component == 'temp'){renderTemp(secondary3Module);}
+    else if (secondary3Component == 'rain'){renderPrecip(secondary3Module);}
+    else if (secondary3Component == 'wind'){renderWind(secondary3Module);}
+    else if (secondary3Component == 'cloud'){renderCloud(secondary3Module);}
+    else if (secondary3Component == 'humidity'){renderHumidity(secondary3Module);}
+    else if (secondary3Component == 'pressure'){renderPressure(secondary3Module);}
+  }
+
+  function renderTemp(gridElem) {
+    var currentTemp = Math.round(weatherData.currently.temperature),
         maxTemp = Math.round(weatherData.daily.data[0].temperatureMax),
         minTemp = Math.round(weatherData.daily.data[0].temperatureMin);
 
@@ -384,9 +422,8 @@
     tempContainer.style.height = containerHeight + 'px';
   }
 
-  function renderWind() {
-    var gridElem = d.getElementById('grid1Content'),
-        speed = Math.round(weatherData.currently.windSpeed * 3.6),
+  function renderWind(gridElem) {
+    var speed = Math.round(weatherData.currently.windSpeed * 3.6),
         degrees = weatherData.currently.windBearing;
 
     gridElem.innerHTML = '';
@@ -407,9 +444,8 @@
   	}
   }
 
-  function renderCloud() {
-    var gridElem = d.getElementById('grid2Content'),
-        cloudCover = weatherData.currently.cloudCover;
+  function renderCloud(gridElem) {
+    var cloudCover = weatherData.currently.cloudCover;
 
     gridElem.innerHTML = '';
     gridElem.innerHTML += '<img id="cloud-outline" src="assets/icons/cloud-outline.svg">';
@@ -428,9 +464,8 @@
   }
 
 
-  function renderPrecip() {
-    var gridElem = d.getElementById('grid3Content'),
-        precipIntensity = Math.round(weatherData.hourly.data[0].precipIntensity*10) / 10;
+  function renderPrecip(gridElem) {
+    var precipIntensity = Math.round(weatherData.hourly.data[0].precipIntensity*10) / 10;
 
     gridElem.innerHTML = '';
 
@@ -452,18 +487,16 @@
     }
   }
 
-  function renderHumidity() {
-    var gridElem = d.getElementById('grid2Content'),
-        humidity = weatherData.currently.humidity * 100;
+  function renderHumidity(gridElem) {
+    var humidity = weatherData.currently.humidity * 100;
 
     gridElem.innerHTML = '';
 
     gridElem.innerHTML += '<div class="current-humidity"><div class="humidity-value">' + humidity + '</div><span class="percent">%</span></div><img id="humidity-icon" src="assets/icons/humidity-icon.svg">';
   }
 
-  function renderPressure() {
-    var gridElem = d.getElementById('grid3Content'),
-        pressure = Math.round(weatherData.currently.pressure);
+  function renderPressure(gridElem) {
+    var pressure = Math.round(weatherData.currently.pressure);
 
     gridElem.innerHTML = '';
 
