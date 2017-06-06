@@ -64,7 +64,9 @@
 
   var user,
       db,
-      locationsRef;
+      locationsRef,
+      themesRef,
+      componentsRef;
 
   function checkAuthState() {
     firebase.auth().onAuthStateChanged(firebaseUser => {
@@ -100,6 +102,13 @@
         }
       });
     }
+
+    componentsRef = db.child('components');
+    if (componentsRef) {
+      componentsRef.once('value').then(function(snapshot) {
+        // snapshot.forEach();
+      });
+    }
   }
 
   // SAVED LOCATIONS FUNCTIONALITY
@@ -133,7 +142,7 @@
   }
 
   function saveLocation(locationName, lat, lng) {
-    var locationsRef = db.child('locations');
+    locationsRef = db.child('locations');
 
     locationsRef.push({
       name: locationName,
@@ -177,14 +186,36 @@
 
   // EDITOR FUNCTIONALITY
 
-  function saveComponents(primary, secondary1, secondary2, secondary3) {
-    var componentsRef = db.child('components');
+  function setComponents() {
+    var primary = 'temp',
+        secondary1 = 'wind',
+        secondary2 = 'cloud',
+        secondary3 = 'rain';
 
-    componentsRef.push({
-      primary: comp1,
-      secondary1: comp2,
-      secondary2: comp3,
-      secondary3: comp4
+    d.getElementById('primary-select').addEventListener('change', function() {
+      primary = event.target.value;
+      saveComponents(primary, secondary1, secondary2, secondary3);
+    });
+    d.getElementById('secondary1-select').addEventListener('change', function() {
+      secondary1 = event.target.value;
+    });
+    d.getElementById('secondary2-select').addEventListener('change', function() {
+      secondary2 = event.target.value;
+    });
+    d.getElementById('secondary3-select').addEventListener('change', function() {
+      secondary3 = event.target.value;
+    });
+
+  }
+
+  function saveComponents(primary, secondary1, secondary2, secondary3) {
+    componentsRef = db.child('components');
+
+    componentsRef.set({
+      primary: primary,
+      secondary1: secondary1,
+      secondary2: secondary2,
+      secondary3: secondary3
     });
   }
 
@@ -517,6 +548,7 @@
     getUserLocation();
     checkAuthState();
     setTheme();
+    setComponents();
     d.getElementById('user-location-btn').addEventListener('click', function(){
       getUserLocation();
       toggleScreenClass('screen-home');
