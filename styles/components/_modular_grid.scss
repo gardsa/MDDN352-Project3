@@ -6,7 +6,7 @@
 }
 
 .grid {
-  width: calc(90%);
+  width: 100%;
   padding: 5%;
   margin: 0 auto;
 }
@@ -25,10 +25,10 @@
 }
 
 .grid-item {
-  width: calc((100% / 3) - 4.5%);
+  width: calc((100% / 3) - 5%);
   height: 0;
   max-height: 0;
-  padding-bottom: calc((100% / 3) - 4.5%);
+  padding-bottom: calc((100% / 3) - 5%);
   float: left;
   border-radius: 0.5em;
   text-align: center;
@@ -40,7 +40,7 @@
     opacity: 0.5;
   }
   .ui-resizable-se {
-    padding: 0 4px 4px 0;
+    margin: 24px 4px 4px 24px;
   }
 }
 
@@ -75,6 +75,7 @@
   position: absolute;
   top: 0.3125em;
   right: 0.3125em;
+  margin: 0 0 1.5em 1.5em;
   background-image: url('assets/icons/move.svg');
   background-repeat: no-repeat;
   z-index: 1;
