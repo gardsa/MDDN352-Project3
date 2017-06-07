@@ -573,7 +573,7 @@ sup {
 
 .graph-barBack {
   border-radius: 50px;
-  background: #DAE4EB;
+  background: #FFFFFF;
   margin-bottom: 1.2vh;
   display: block; }
 
@@ -591,13 +591,6 @@ sup {
   display: block;
   height: 0.3em;
   width: 0%; }
-
-.graph-bar:hover {
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  background: #d9d9d9; }
 
 .graph-bar:last-child {
   margin-bottom: 0; }
@@ -697,7 +690,7 @@ sup {
   border-radius: 0.5em; }
 .theme-container .list-module .theme-name {
   background-color: rgba(154, 154, 154, 0.6);
-  flex-basis: 40%;
+  flex-basis: 50%;
   padding: 0.875em; }
 .theme-container .list-module .selected .theme-name {
   background-color: #9A9A9A; }

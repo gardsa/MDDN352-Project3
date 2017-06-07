@@ -55,7 +55,7 @@
 }
 .graph-barBack {
   border-radius: 50px;
-  background: #DAE4EB;
+  background: #FFFFFF;
   margin-bottom: 1.2vh;
   display: block;
 }
@@ -74,13 +74,13 @@
   height: 0.3em;
   width: 0%;
 }
-.graph-bar:hover {
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  background: #d9d9d9;
-}
+// .graph-bar:hover {
+//   -webkit-transition: all 0.5s ease;
+//   -moz-transition: all 0.5s ease;
+//   -o-transition: all 0.5s ease;
+//   transition: all 0.5s ease;
+//   background: #d9d9d9;
+// }
 .graph-bar:last-child {
   margin-bottom: 0;
 }

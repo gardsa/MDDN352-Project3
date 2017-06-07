@@ -527,7 +527,7 @@
   }
 
   function renderHumidity(gridElem) {
-    var humidity = weatherData.currently.humidity * 100;
+    var humidity = Math.round(weatherData.currently.humidity * 100);
 
     gridElem.innerHTML = '';
 
