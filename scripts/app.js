@@ -588,7 +588,7 @@
 
   function renderWindGraph(graphElem) {
     graphElem.innerHTML = '';
-    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack windbarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack windbarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack windbartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack windbarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack windbarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack windbarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend current-legend"></span></li></span><span class="graph-barBack windbarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend one-legend"></span></li></span><span class="graph-barBack windbartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend two-legend"></span></li></span><span class="graph-barBack windbarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend three-legend"></span></li></span><span class="graph-barBack windbarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend four-legend"></span></li></span></ul></div></div></div>';
 
     wind0 = weatherData.hourly.data[0].windSpeed;
     wind1 = weatherData.hourly.data[1].windSpeed;
@@ -604,6 +604,7 @@
     $('.graph-bar').each(function(i) {
        $(this).data('value', );
     });
+    renderLegends();
   }
 
   function changeRainContent(gridElem, gridElemParent) {
@@ -627,7 +628,7 @@
 
   function renderRainGraph(graphElem) {
     graphElem.innerHTML = '';
-    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack rainbarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack rainbarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack rainbartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack rainbarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack rainbarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack rainbarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend current-legend"></span></li></span><span class="graph-barBack rainbarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend one-legend"></span></li></span><span class="graph-barBack rainbartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend two-legend"></span></li></span><span class="graph-barBack rainbarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend three-legend"></span></li></span><span class="graph-barBack rainbarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend four-legend"></span></li></span></ul></div></div></div>';
 
     rain0 = Math.round(weatherData.hourly.data[0].precipIntensity*10) / 10;
     rain1 = Math.round(weatherData.hourly.data[1].precipIntensity*10) / 10;
@@ -643,6 +644,7 @@
     $('.graph-bar').each(function(i) {
        $(this).data('value', );
     });
+    renderLegends();
   }
 
   function changeCloudContent(gridElem, gridElemParent) {
@@ -666,7 +668,7 @@
 
   function renderCloudGraph(graphElem) {
     graphElem.innerHTML = '';
-    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack cloudbarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack cloudbarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack cloudbartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack cloudbarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack cloudbarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack cloudbarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend current-legend"></span></li></span><span class="graph-barBack cloudbarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend one-legend"></span></li></span><span class="graph-barBack cloudbartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend two-legend"></span></li></span><span class="graph-barBack cloudbarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend three-legend"></span></li></span><span class="graph-barBack cloudbarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend four-legend"></span></li></span></ul></div></div></div>';
     cloud0 = weatherData.hourly.data[0].cloudCover;
     cloud1 = weatherData.hourly.data[1].cloudCover;
     cloud2 = weatherData.hourly.data[2].cloudCover;
@@ -681,6 +683,7 @@
     $('.graph-bar').each(function(i) {
        $(this).data('value', );
     });
+    renderLegends();
   }
 
   function changeHumidityContent(gridElem, gridElemParent) {
@@ -704,7 +707,7 @@
 
   function renderHumidityGraph(graphElem) {
     graphElem.innerHTML = '';
-    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack humiditybarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack humiditybarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack humiditybartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack humiditybarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack humiditybarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack humiditybarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend current-legend"></span></li></span><span class="graph-barBack humiditybarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend one-legend"></span></li></span><span class="graph-barBack humiditybartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend two-legend"></span></li></span><span class="graph-barBack humiditybarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend three-legend"></span></li></span><span class="graph-barBack humiditybarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend four-legend"></span></li></span></ul></div></div></div>';
 
     humidity0 = weatherData.hourly.data[0].humidity;
     humidity1 = weatherData.hourly.data[1].humidity;
@@ -720,6 +723,7 @@
     $('.graph-bar').each(function(i) {
        $(this).data('value', );
     });
+    renderLegends();
   }
 
 
@@ -744,7 +748,7 @@
 
   function renderPressureGraph(graphElem) {
     graphElem.innerHTML = '';
-    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack pressurebarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack pressurebarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack pressurebartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack pressurebarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack pressurebarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack pressurebarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend current-legend"></span></li></span><span class="graph-barBack pressurebarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend one-legend"></span></li></span><span class="graph-barBack pressurebartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend two-legend"></span></li></span><span class="graph-barBack pressurebarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend three-legend"></span></li></span><span class="graph-barBack pressurebarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend four-legend"></span></li></span></ul></div></div></div>';
 
     pressure0 = weatherData.hourly.data[0].pressure;
     pressure1 = weatherData.hourly.data[1].pressure;
@@ -760,6 +764,86 @@
     $('.graph-bar').each(function(i) {
        $(this).data('value', );
     });
+    renderLegends();
+  }
+
+  function renderLegends(){
+    var currentLegends = d.querySelectorAll('.current-legend'),
+        oneLegends = d.querySelectorAll('.one-legend'),
+        twoLegends = d.querySelectorAll('.two-legend'),
+        threeLegends = d.querySelectorAll('.three-legend'),
+        fourLegends = d.querySelectorAll('.four-legend'),
+        currentHour = new Date().getHours();
+
+    for (const currentLegend of currentLegends) {
+      if (currentHour == 0){
+        var currentHourElem = '12am';
+      } else if (currentHour == 12){
+        var currentHourElem = '12pm';
+      } else if (currentHour >= 13) {
+        var currentHourElem = currentHour - 12;
+        currentHourElem = currentHourElem.toString() + 'pm';
+      } else {
+        var currentHourElem = currentHour.toString() + 'am';
+      }
+      currentLegend.innerHTML = currentHourElem;
+    }
+    currentHour += 1;
+    for (const oneLegend of oneLegends) {
+      if (currentHour == 0){
+        var oneHourElem = '12am';
+      } else if (currentHour == 12){
+        var oneHourElem = '12pm';
+      } else if (currentHour >= 13) {
+        var oneHourElem = currentHour - 12;
+        oneHourElem = oneHourElem.toString() + 'pm';
+      } else {
+        var oneHourElem = currentHour.toString() + 'am';
+      }
+      oneLegend.innerHTML = oneHourElem;
+    }
+    currentHour += 1;
+    for (const twoLegend of twoLegends) {
+      if (currentHour == 0){
+        var twoHourElem = '12am';
+      } else if (currentHour == 12){
+        var twoHourElem = '12pm';
+      } else if (currentHour >= 13) {
+        var twoHourElem = currentHour - 12;
+        twoHourElem = twoHourElem.toString() + 'pm';
+      } else {
+        var twoHourElem = currentHour.toString() + 'am';
+      }
+      twoLegend.innerHTML = twoHourElem;
+    }
+    currentHour += 1;
+    for (const threeLegend of threeLegends) {
+      if (currentHour == 0){
+        var threeHourElem = '12am';
+      } else if (currentHour == 12){
+        var threeHourElem = '12pm';
+      } else if (currentHour >= 13) {
+        var threeHourElem = currentHour - 12;
+        threeHourElem = threeHourElem.toString() + 'pm';
+      } else {
+        var threeHourElem = currentHour.toString() + 'am';
+      }
+      threeLegend.innerHTML = threeHourElem;
+    }
+    currentHour += 1;
+    for (const fourLegend of fourLegends) {
+      if (currentHour == 0){
+        var fourHourElem = '12am';
+      } else if (currentHour == 12){
+        var fourHourElem = '12pm';
+      } else if (currentHour >= 13) {
+        var fourHourElem = currentHour - 12;
+        fourHourElem = fourHourElem.toString() + 'pm';
+      } else {
+        var fourHourElem = currentHour.toString() + 'am';
+      }
+      fourLegend.innerHTML = fourHourElem;
+    }
   }
 
   // EVENTS
