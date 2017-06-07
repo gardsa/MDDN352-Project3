@@ -4,13 +4,18 @@
   .content {
     width: 100%;
     .location-info {
-      margin: 1.5em 0;
+      padding: 1em;
+      margin-bottom: 1.5em;
       line-height: 1;
       text-align: center;
       text-transform: uppercase;
+      background-color: $default-primary-color;
+      border-radius: 0.5em;
+      width: 80%;
+      margin: 0 auto;
 
       #location {
-        padding: .25em 0;
+        padding-bottom: .25em;
         font-weight: 600;
         font-size: 2em;
       }

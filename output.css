@@ -525,6 +525,109 @@ sup {
   width: 78%;
   height: 78%; }
 
+.graph-content {
+  display: none; }
+
+/* Wind Bar Graph css */
+.clearfix,
+.clearfix:before,
+.clearfix:after {
+  display: block;
+  content: " ";
+  clear: both;
+  zoom: 1; }
+
+/* Resets */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.originalWrap {
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  margin: 1em;
+  top: 0;
+  left: 0; }
+
+.wrap {
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 1200px; }
+
+.barGraph {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 1em; }
+
+.graph {
+  position: absolute;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  left: 30%;
+  max-width: 80%; }
+
+.graph-barBack {
+  border-radius: 50px;
+  background: #DAE4EB;
+  margin-bottom: 1.2vh;
+  display: block; }
+
+.graph-bar {
+  background-color: #ffffff;
+  -webkit-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 9999;
+  display: block;
+  height: 0.3em;
+  width: 0%; }
+
+.graph-bar:hover {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background: #d9d9d9; }
+
+.graph-bar:last-child {
+  margin-bottom: 0; }
+
+.graph-bar:after {
+  position: absolute;
+  content: attr(data-value);
+  display: none;
+  font-size: 12px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  line-height: 20px;
+  height: 20px;
+  padding: 0 10px;
+  margin-left: 5px;
+  left: 100%;
+  top: 0; }
+
+.graph-bar:hover:after {
+  display: block; }
+
+.graph-legend {
+  position: absolute;
+  font-size: 0.5em;
+  color: white;
+  margin-right: 10px;
+  left: -45px;
+  z-index: 9999; }
+
 .login-container {
   position: absolute;
   top: 0;
@@ -664,12 +767,17 @@ sup {
   .home-container .content {
     width: 100%; }
     .home-container .content .location-info {
-      margin: 1.5em 0;
+      padding: 1em;
+      margin-bottom: 1.5em;
       line-height: 1;
       text-align: center;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      background-color: #EDEDED;
+      border-radius: 0.5em;
+      width: 80%;
+      margin: 0 auto; }
       .home-container .content .location-info #location {
-        padding: .25em 0;
+        padding-bottom: .25em;
         font-weight: 600;
         font-size: 2em; }
       .home-container .content .location-info #description {

@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>WeatherFlex</title>
+
+    <!-- Apple WebApplicaton Settings -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="WeatherFlex">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- OpenGraph -->
     <meta property="og:title" content="WeatherFlex">
@@ -20,8 +24,8 @@
     <!-- Icons -->
     <link rel="icon" href="assets/favicon.png">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/touch-icon-192x192.png">
-    <link rel="icon" sizes="192x192" href="assets/touch-icon-192x192.png">
-    <link rel="icon" sizes="256x256" href="assets/touch-icon-256x256.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/touch-icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="assets/touch-icon-256x256.png">
 
     <!-- CSS Reset, custom styles, and Google Fonts -->
     <link rel="stylesheet" type="text/css" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
@@ -279,14 +283,17 @@
             <div id="grid1" class="grid-item">
               <div class="handle"></div>
               <div id="grid1Content"></div>
+              <div id="grid1ContentGraph" class="graph-content"></div>
             </div>
             <div id="grid2" class="grid-item">
               <div class="handle"></div>
               <div id="grid2Content"></div>
+              <div id="grid2ContentGraph" class="graph-content"></div>
             </div>
             <div id="grid3" class="grid-item">
               <div class="handle"></div>
               <div id="grid3Content"></div>
+              <div id="grid3ContentGraph" class="graph-content"></div>
             </div>
           </div>
         </div>

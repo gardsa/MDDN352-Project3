@@ -442,12 +442,16 @@
 
     gridElem.innerHTML = '';
     gridElem.innerHTML += '<div id="temp-container"><div class="current-temp">' + currentTemp + '<sup>&deg;</sup></div><div class="forecast-temp"><div class="high">' + maxTemp + '<sup>&deg;</sup></div><div class="low">' + minTemp + '<sup>&deg;</sup></div></div></div>';
+
     setMainComponentDivHeight();
   }
 
+  var containerHeight;
   function setMainComponentDivHeight() {
-    var containerHeight = d.getElementById('gridMain').clientHeight,
-        contentContainer = d.getElementById('gridMainContent'),
+    if (containerHeight == null) {
+      containerHeight = d.getElementById('gridMain').offsetHeight;
+    }
+    var contentContainer = d.getElementById('gridMainContent'),
         tempContainer = d.getElementById('temp-container');
 
     contentContainer.style.height = containerHeight + 'px';
@@ -474,6 +478,7 @@
   	} else {
   		directionElem.style.transform = "rotate("+degrees+"deg)";
   	}
+    changeWindContent(gridElem, gridElem.parentElement);
   }
 
   function renderCloud(gridElem) {
@@ -493,6 +498,7 @@
 
       cloud.style.clip = 'rect(' + clippingHeight + 'px,' + cloudWidth + 'px,' + cloudHeight + 'px,0px)';
     }
+    changeCloudContent(gridElem, gridElem.parentElement);
   }
 
 
@@ -517,6 +523,7 @@
     } else {
       gridElem.innerHTML += '<div class="current-precip"><div class="intensity">0</div><div class="units">mm</div></div><img id="precip-icon" src="assets/rain-icon.svg">';
     }
+    changeRainContent(gridElem, gridElem.parentElement);
   }
 
   function renderHumidity(gridElem) {
@@ -525,6 +532,8 @@
     gridElem.innerHTML = '';
 
     gridElem.innerHTML += '<div class="current-humidity"><div class="humidity-value">' + humidity + '</div><span class="percent">%</span></div><img id="humidity-icon" src="assets/icons/humidity-icon.svg">';
+
+    changeHumidityContent(gridElem, gridElem.parentElement);
   }
 
   function renderPressure(gridElem) {
@@ -554,6 +563,251 @@
   	} else {
   		pointerElem.style.transform = "rotate("+rotateVal+"deg)";
   	}
+
+    changePressureContent(gridElem, gridElem.parentElement);
+  }
+
+  function changeWindContent(gridElem, gridElemParent) {
+    var gridWidth,
+        graphElem = gridElemParent.querySelector('.graph-content');
+
+    gridElemParent.addEventListener('mouseup', function(){
+      gridWidth = gridElemParent.offsetWidth;
+
+      if (gridWidth > 180) { //TODO: change this value?
+        gridElem.style.display = 'none';
+        graphElem.style.display = 'block';
+      } else {
+        gridElem.style.display = 'block';
+        graphElem.style.display = 'none';
+      }
+    });
+
+    renderWindGraph(graphElem);
+  }
+
+  function renderWindGraph(graphElem) {
+    console.log('rendering graph');
+    graphElem.innerHTML = '';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack windbarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack windbarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack windbartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack windbarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack windbarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+
+
+    wind0 = weatherData.hourly.data[0].windSpeed;
+    wind1 = weatherData.hourly.data[1].windSpeed;
+    wind2 = weatherData.hourly.data[2].windSpeed;
+    wind3 = weatherData.hourly.data[3].windSpeed;
+    wind4 = weatherData.hourly.data[4].windSpeed;
+
+
+    console.log(wind0, wind1, wind2, wind3, wind4);
+
+    $('.windbarcur').css('width', wind0*10 + '%');
+
+    $('.windbarone').css('width', wind1*10 + '%');
+
+    $('.windbartwo').css('width', wind2*10 + '%');
+
+    $('.windbarthree').css('width', wind3*10 + '%');
+
+    $('.windbarfour').css('width', wind4*10 + '%');
+
+    $('.graph-bar').each(function(i) {
+       $(this).data('value', );
+    });
+  }
+
+  function changeRainContent(gridElem, gridElemParent) {
+    var gridWidth,
+        graphElem = gridElemParent.querySelector('.graph-content');
+
+    gridElemParent.addEventListener('mouseup', function(){
+      gridWidth = gridElemParent.offsetWidth;
+
+      if (gridWidth > 180) { //TODO: change this value?
+        gridElem.style.display = 'none';
+        graphElem.style.display = 'block';
+      } else {
+        gridElem.style.display = 'block';
+        graphElem.style.display = 'none';
+      }
+    });
+
+    renderRainGraph(graphElem);
+  }
+
+  function renderRainGraph(graphElem) {
+    console.log('rendering graph');
+    graphElem.innerHTML = '';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack rainbarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack rainbarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack rainbartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack rainbarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack rainbarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+
+
+    rain0 = Math.round(weatherData.hourly.data[0].precipIntensity*10) / 10;
+    rain1 = Math.round(weatherData.hourly.data[1].precipIntensity*10) / 10;
+    rain2 = Math.round(weatherData.hourly.data[2].precipIntensity*10) / 10;
+    rain3 = Math.round(weatherData.hourly.data[3].precipIntensity*10) / 10;
+    rain4 = Math.round(weatherData.hourly.data[4].precipIntensity*10) / 10;
+
+
+    console.log(rain0, rain1, rain2, rain3, rain4);
+
+    $('.rainbarcur').css('width', rain0*100 + '%');
+
+    $('.rainbarone').css('width', rain1*100 + '%');
+
+    $('.rainbartwo').css('width', rain2*100 + '%');
+
+    $('.rainbarthree').css('width', rain3*100 + '%');
+
+    $('.rainbarfour').css('width', rain4*100 + '%');
+
+    $('.graph-bar').each(function(i) {
+       $(this).data('value', );
+    });
+  }
+
+  function changeCloudContent(gridElem, gridElemParent) {
+    var gridWidth,
+        graphElem = gridElemParent.querySelector('.graph-content');
+
+    gridElemParent.addEventListener('mouseup', function(){
+      gridWidth = gridElemParent.offsetWidth;
+
+      if (gridWidth > 180) { //TODO: change this value?
+        gridElem.style.display = 'none';
+        graphElem.style.display = 'block';
+      } else {
+        gridElem.style.display = 'block';
+        graphElem.style.display = 'none';
+      }
+    });
+
+    renderCloudGraph(graphElem);
+  }
+
+  function renderCloudGraph(graphElem) {
+    graphElem.innerHTML = '';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack cloudbarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack cloudbarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack cloudbartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack cloudbarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack cloudbarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+
+
+    cloud0 = weatherData.hourly.data[0].cloudCover;
+    cloud1 = weatherData.hourly.data[1].cloudCover;
+    cloud2 = weatherData.hourly.data[2].cloudCover;
+    cloud3 = weatherData.hourly.data[3].cloudCover;
+    cloud4 = weatherData.hourly.data[4].cloudCover;
+
+
+    console.log(cloud0, cloud1, cloud2, cloud3, cloud4);
+
+    $('.cloudbarcur').css('width', cloud0*100 + '%');
+
+    $('.cloudbarone').css('width', cloud1*100 + '%');
+
+    $('.cloudbartwo').css('width', cloud2*100 + '%');
+
+    $('.cloudbarthree').css('width', cloud3*100 + '%');
+
+    $('.cloudbarfour').css('width', cloud4*100 + '%');
+
+    $('.graph-bar').each(function(i) {
+       $(this).data('value', );
+    });
+  }
+
+  function changeHumidityContent(gridElem, gridElemParent) {
+    var gridWidth,
+        graphElem = gridElemParent.querySelector('.graph-content');
+
+    gridElemParent.addEventListener('mouseup', function(){
+      gridWidth = gridElemParent.offsetWidth;
+
+      if (gridWidth > 180) { //TODO: change this value?
+        gridElem.style.display = 'none';
+        graphElem.style.display = 'block';
+      } else {
+        gridElem.style.display = 'block';
+        graphElem.style.display = 'none';
+      }
+    });
+
+    renderHumidityGraph(graphElem);
+  }
+
+  function renderHumidityGraph(graphElem) {
+    graphElem.innerHTML = '';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack humiditybarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack humiditybarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack humiditybartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack humiditybarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack humiditybarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+
+
+    humidity0 = weatherData.hourly.data[0].humidity;
+    humidity1 = weatherData.hourly.data[1].humidity;
+    humidity2 = weatherData.hourly.data[2].humidity;
+    humidity3 = weatherData.hourly.data[3].humidity;
+    humidity4 = weatherData.hourly.data[4].humidity;
+
+
+    console.log(humidity0, humidity1, humidity2, humidity3, humidity4);
+
+    $('.humiditybarcur').css('width', humidity0*100 + '%');
+
+    $('.humiditybarone').css('width', humidity1*100 + '%');
+
+    $('.humiditybartwo').css('width', humidity2*100 + '%');
+
+    $('.humiditybarthree').css('width', humidity3*100 + '%');
+
+    $('.humiditybarfour').css('width', humidity4*100 + '%');
+
+    $('.graph-bar').each(function(i) {
+       $(this).data('value', );
+    });
+  }
+
+
+  function changePressureContent(gridElem, gridElemParent) {
+    var gridWidth,
+        graphElem = gridElemParent.querySelector('.graph-content');
+
+    gridElemParent.addEventListener('mouseup', function(){
+      gridWidth = gridElemParent.offsetWidth;
+
+      if (gridWidth > 180) { //TODO: change this value?
+        gridElem.style.display = 'none';
+        graphElem.style.display = 'block';
+      } else {
+        gridElem.style.display = 'block';
+        graphElem.style.display = 'none';
+      }
+    });
+
+    renderPressureGraph(graphElem);
+  }
+
+  function renderPressureGraph(graphElem) {
+    graphElem.innerHTML = '';
+    graphElem.innerHTML += '<div class="originalWrap"><div class="wrap"><div class="barGraph"><ul class="graph"><span class="graph-barBack pressurebarcur"><li class="graph-bar barCurDataVal" data-value=""><span class="graph-legend">Current</span></li></span><span class="graph-barBack pressurebarone"><li class="graph-bar barOneDataVal" data-value=""><span class="graph-legend">Hour 1</span></li></span><span class="graph-barBack pressurebartwo"><li class="graph-bar barTwoDataVal" data-value=""><span class="graph-legend">Hour 2</span></li></span><span class="graph-barBack pressurebarthree"><li class="graph-bar barThreeDataVal" data-value=""><span class="graph-legend">Hour 3</span></li></span><span class="graph-barBack pressurebarfour"><li class="graph-bar barFourDataVal" data-value=""><span class="graph-legend">Hour 4</span></li></span></ul></div></div></div>';
+
+
+    pressure0 = weatherData.hourly.data[0].pressure;
+    pressure1 = weatherData.hourly.data[1].pressure;
+    pressure2 = weatherData.hourly.data[2].pressure;
+    pressure3 = weatherData.hourly.data[3].pressure;
+    pressure4 = weatherData.hourly.data[4].pressure;
+
+
+    console.log(pressure0, pressure1, pressure2, pressure3, pressure4);
+
+    $('.pressurebarcur').css('width', pressure0/20 + '%');
+
+    $('.pressurebarone').css('width', pressure1/20 + '%');
+
+    $('.pressurebartwo').css('width', pressure2/20 + '%');
+
+    $('.pressurebarthree').css('width', pressure3/20 + '%');
+
+    $('.pressurebarfour').css('width', pressure4/20 + '%');
+
+    $('.graph-bar').each(function(i) {
+       $(this).data('value', );
+    });
   }
 
   // EVENTS
